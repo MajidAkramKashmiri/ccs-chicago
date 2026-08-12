@@ -338,15 +338,15 @@ function footer(depth) {
             </div>
 
             <div class="footer-col">
-                <h4>Popular services</h4>
-                <ul>
+                <h4>Our services</h4>
+                <ul class="footer-service-list">
                     ${col(featuredServices)}
                     <li><a class="footer-all" href="${rel('/services.html', depth)}">View all ${SERVICES.length} services ${ICONS.arrow}</a></li>
                 </ul>
             </div>
 
             <div class="footer-col">
-                <h4>Explore</h4>
+                <h4>Company</h4>
                 <ul>
                     <li><a href="${rel('/about.html', depth)}">About us</a></li>
                     <li><a href="${rel('/service-areas.html', depth)}">Service areas</a></li>
@@ -355,11 +355,21 @@ function footer(depth) {
                     <li><a href="${rel('/contact.html', depth)}">Request a quote</a></li>
                 </ul>
             </div>
+
+            <div class="footer-quote">
+                <span class="footer-quote__icon">${ICONS.clipboard}</span>
+                <h4>Need a cleaner<br>for your workplace?</h4>
+                <p>Let’s build a cleaning plan that fits your facility and schedule.</p>
+                <a class="btn btn--primary btn--lg btn--block" href="${rel('/contact.html', depth)}">Get a free quote ${ICONS.arrow}</a>
+                <span class="footer-quote__or">or</span>
+                <a class="footer-quote__phone" href="${BUSINESS.phoneHref}">${ICONS.phone}<span>Call us today<strong>${esc(BUSINESS.phone)}</strong></span></a>
+            </div>
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; <span data-year>2026</span> ${esc(BUSINESS.name)}. All rights reserved.</p>
-            <p>${esc(BUSINESS.hours)} &middot; ${esc(BUSINESS.hoursNote)} &middot; <a href="https://www.commercialcleaningsystemsofchicago.com/privacy-policy">Privacy</a></p>
+            <p class="footer-copy">${ICONS.shield}<span>&copy; <span data-year>2026</span> ${esc(BUSINESS.name)}.<br>All rights reserved.</span></p>
+            <p class="footer-hours">${ICONS.clock}<span><strong>Hours of operation</strong>${esc(BUSINESS.hours)}<br>${esc(BUSINESS.hoursNote)}</span></p>
+            <p class="footer-legal"><a href="https://www.commercialcleaningsystemsofchicago.com/privacy-policy">Privacy Policy</a><span>•</span><a href="https://www.commercialcleaningsystemsofchicago.com/terms-and-conditions">Terms of Service</a><span>•</span><a href="${rel('/sitemap.xml', depth)}">Sitemap</a></p>
         </div>
     </div>
 </footer>

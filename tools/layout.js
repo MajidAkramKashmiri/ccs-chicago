@@ -316,9 +316,13 @@ function footer(depth) {
     return `
 </main>
 
-<footer class="site-footer">
+<footer class="site-footer" id="footer">
     <div class="wrap">
         <div class="footer-top">
+            <picture class="footer-skyline" aria-hidden="true">
+                <source media="(max-width: 700px)" srcset="${rel('/assets/img/footer/chicago-skyline-960.jpg', depth)}">
+                <img src="${rel('/assets/img/footer/chicago-skyline-1600.jpg', depth)}" alt="" width="1600" height="901" loading="lazy" decoding="async">
+            </picture>
             <div class="footer-brand">
                 <a class="brand brand--footer" href="${rel('/index.html', depth)}">
                     <img src="${rel('/assets/img/brand/logo-mono.svg', depth)}" alt="" width="48" height="48" loading="lazy">

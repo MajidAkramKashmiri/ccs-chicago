@@ -1,6 +1,11 @@
 .DS_Store
 node_modules/
-_dbg.html
-_t.html
-debug.html
-test*.html
+
+# Temporary test harnesses written next to the build during verification.
+# Patterns are exact rather than globbed — an earlier `test*.html` silently
+# matched testimonials.html and kept a real page out of the repo.
+/_dbg.html
+/_t.html
+/debug.html
+/test.html
+/test2.html

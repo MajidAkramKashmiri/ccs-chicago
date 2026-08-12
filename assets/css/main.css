@@ -2024,7 +2024,6 @@ a.topbar__item:hover { color: #fff; }
     font-size: .9rem;
 }
 .site-footer::before { content:''; position:absolute; inset:0; pointer-events:none; opacity:.13; background-image:linear-gradient(rgba(92,152,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(92,152,255,.08) 1px,transparent 1px); background-size:72px 72px; mask-image:linear-gradient(to bottom,#000,transparent 72%); }
-.site-footer::after { content:''; position:absolute; left:2%; bottom:84px; width:26%; height:190px; opacity:.12; pointer-events:none; background:linear-gradient(to top,rgba(42,109,226,.8),transparent); clip-path:polygon(0 100%,0 84%,8% 84%,8% 60%,13% 60%,13% 76%,19% 76%,19% 47%,23% 47%,23% 80%,29% 80%,29% 68%,36% 68%,36% 24%,39% 24%,39% 7%,42% 24%,42% 66%,48% 66%,48% 73%,56% 73%,56% 50%,62% 50%,62% 82%,69% 82%,69% 62%,75% 62%,75% 44%,80% 44%,80% 76%,88% 76%,88% 57%,93% 57%,93% 85%,100% 85%,100% 100%); }
 .site-footer > .wrap { position:relative; z-index:1; }
 
 .footer-top {
@@ -2037,6 +2036,8 @@ a.topbar__item:hover { color: #fff; }
 @media (max-width: 560px)  { .footer-top { grid-template-columns: 1fr; } }
 
 .brand--footer { margin-bottom: 1rem; }
+.footer-brand { position:relative; padding-bottom:clamp(7rem,10vw,10rem); }
+.footer-brand::after { content:''; position:absolute; left:0; bottom:0; width:min(100%,560px); height:clamp(90px,8vw,140px); opacity:.12; pointer-events:none; background:linear-gradient(to top,rgba(42,109,226,.82),transparent); clip-path:polygon(0 100%,0 84%,8% 84%,8% 60%,13% 60%,13% 76%,19% 76%,19% 47%,23% 47%,23% 80%,29% 80%,29% 68%,36% 68%,36% 24%,39% 24%,39% 7%,42% 24%,42% 66%,48% 66%,48% 73%,56% 73%,56% 50%,62% 50%,62% 82%,69% 82%,69% 62%,75% 62%,75% 44%,80% 44%,80% 76%,88% 76%,88% 57%,93% 57%,93% 85%,100% 85%,100% 100%); }
 .brand--footer .brand__name { color: #fff; }
 .brand--footer .brand__tag { color: var(--blue-400); }
 .footer-brand p { max-width: 42ch; color:rgba(255,255,255,.64); }
@@ -2121,6 +2122,8 @@ a.topbar__item:hover { color: #fff; }
     .footer-bottom { grid-template-columns:1fr; }
     .footer-hours { border:0; padding:0; }
     .footer-legal { justify-content:flex-start; }
+    .footer-brand { padding-bottom:6.5rem; }
+    .footer-brand::after { height:90px; }
 }
 
 /* --------------------------------------------------------------------------

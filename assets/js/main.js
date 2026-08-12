@@ -212,6 +212,72 @@
         }
     }
 
+    /* ----- hero parallax ---------------------------------------------------
+       The background drifts slower than the page scrolls, and leans a few
+       pixels toward the pointer. Both are clamped small deliberately: parallax
+       reads as depth when it is barely noticed and as a gimmick when it is not.
+       Everything runs off one rAF frame so scrolling stays smooth.
+       --------------------------------------------------------------------- */
+    var parallaxEl = document.querySelector('[data-parallax]');
+
+    if (parallaxEl && !reduceMotion && window.matchMedia('(min-width: 760px)').matches) {
+        var heroEl = parallaxEl.closest('.hero');
+        var scrollShift = 0;
+        var pointerX = 0;
+        var pointerY = 0;
+        var queued = false;
+        var inView = true;
+
+        var paint = function () {
+            queued = false;
+            parallaxEl.style.transform =
+                'translate3d(' + pointerX.toFixed(2) + 'px, ' + (scrollShift + pointerY).toFixed(2) + 'px, 0)';
+        };
+
+        var request = function () {
+            if (!queued && inView) {
+                queued = true;
+                window.requestAnimationFrame(paint);
+            }
+        };
+
+        window.addEventListener(
+            'scroll',
+            function () {
+                // Max ~70px of travel across the hero's height.
+                var y = window.scrollY;
+                var h = heroEl.offsetHeight || 1;
+                scrollShift = Math.max(-70, Math.min(0, -(y / h) * 70));
+                request();
+            },
+            { passive: true }
+        );
+
+        heroEl.addEventListener(
+            'mousemove',
+            function (event) {
+                var r = heroEl.getBoundingClientRect();
+                pointerX = ((event.clientX - r.left) / r.width - 0.5) * -16;
+                pointerY = ((event.clientY - r.top) / r.height - 0.5) * -10;
+                request();
+            },
+            { passive: true }
+        );
+
+        heroEl.addEventListener('mouseleave', function () {
+            pointerX = 0;
+            pointerY = 0;
+            request();
+        });
+
+        // Stop touching the DOM once the hero has scrolled away.
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver(function (entries) {
+                inView = entries[0].isIntersecting;
+            }).observe(heroEl);
+        }
+    }
+
     /* ----- FAQ accordion --------------------------------------------------- */
     Array.prototype.forEach.call(document.querySelectorAll('.faq__q'), function (btn) {
         btn.addEventListener('click', function () {

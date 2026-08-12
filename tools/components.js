@@ -40,7 +40,11 @@ function photo(name, alt, { sizes, cls = '', eager = false, w = 960, h = 640 } =
 }
 
 /* --------------------------------------------------------------------------
-   Hero — split layout, white ground, photo panel on the right
+   Hero — full-bleed photograph with the copy laid over it
+
+   The background art is built with a deliberately dark left third, so the
+   headline sits on the image rather than in a box beside it. Everything on top
+   is a layer: scrim, animated light trail, drifting motes, then content.
    -------------------------------------------------------------------------- */
 function hero(depth) {
     const chips = [
@@ -49,20 +53,44 @@ function hero(depth) {
         'Insured & background-checked'
     ];
 
-    // The rotating noun is what makes the hero feel like it is addressing the
-    // reader rather than describing itself. The first word is rendered in the
-    // markup so the headline is a complete sentence without JavaScript.
-    const rotate = ['office towers', 'warehouses', 'plants', 'clinics', 'schools', 'gyms'];
+    // The rotating noun makes the headline address the reader. The first word
+    // is in the markup, so with JS off it is still a finished sentence.
+    const rotate = ['businesses', 'office towers', 'warehouses', 'plants', 'clinics', 'schools'];
+
+    const motes = [
+        [14, 62, 0, 17], [27, 38, 3.2, 21], [41, 74, 6.1, 19],
+        [58, 46, 1.8, 23], [69, 66, 4.6, 18], [80, 34, 7.4, 25],
+        [88, 58, 2.5, 20], [50, 84, 5.3, 22]
+    ]
+        .map(
+            ([x, y, delay, dur]) =>
+                `<i style="left:${x}%;top:${y}%;animation-delay:-${delay}s;animation-duration:${dur}s"></i>`
+        )
+        .join('');
+
+    const base = rel('/assets/img/hero/hero-bg', depth);
 
     return `
-<section class="hero">
-    <span class="fx fx--hero" aria-hidden="true"><i></i><i></i><i></i></span>
-    <span class="hero__beam" aria-hidden="true"></span>
+<section class="hero" data-hero>
+    <div class="hero__bg" data-parallax>
+        <img src="${base}.jpg"
+             srcset="${base}-800.jpg 800w, ${base}-1200.jpg 1200w, ${base}.jpg 1659w"
+             sizes="100vw" alt="" aria-hidden="true"
+             width="1659" height="948" fetchpriority="high" decoding="async">
+    </div>
+
+    <span class="hero__scrim" aria-hidden="true"></span>
+    <span class="hero__glow" aria-hidden="true"></span>
+
+    <span class="hero__sweep" aria-hidden="true"></span>
+
+    <span class="motes" aria-hidden="true">${motes}</span>
+
     <div class="wrap hero__wrap">
         <div class="hero__text">
-            <p class="hero__kicker">${ICONS.pin} Chicago &amp; the western suburbs</p>
+            <p class="hero__kicker" data-in="1">${ICONS.pin} Chicago &amp; the western suburbs</p>
 
-            <h1 class="hero__title">
+            <h1 class="hero__title" data-in="2">
                 <span class="hero__line">We keep Chicago's</span>
                 <span class="hero__rot" data-rotate='${JSON.stringify(rotate)}'>
                     <span class="hero__rot-word is-in">${esc(rotate[0])}</span>
@@ -70,14 +98,15 @@ function hero(depth) {
                 <span class="hero__line">running spotless.</span>
             </h1>
 
-            <p class="hero__body">Fifteen specialist cleaning programs under one contract, across Chicago and the
-            western suburbs. Every job runs to a written scope — and a supervisor inspects against it.</p>
+            <p class="hero__body" data-in="3">Fifteen specialist cleaning programs under one contract,
+            across Chicago and the western suburbs. Every job runs to a written scope — and a supervisor
+            inspects against it.</p>
 
-            <ul class="hero__chips">
+            <ul class="hero__chips" data-in="4">
                 ${chips.map((c) => `<li>${ICONS.check}<span>${esc(c)}</span></li>`).join('\n                ')}
             </ul>
 
-            <div class="btn-row">
+            <div class="btn-row" data-in="5">
                 <a class="btn btn--lg btn--white btn--glow" href="${rel('/contact.html', depth)}" data-cta="hero-quote">
                     Get a free quote ${ICONS.arrow}
                 </a>
@@ -86,26 +115,34 @@ function hero(depth) {
                 </a>
             </div>
         </div>
-
-        <div class="hero__media">
-            <div class="hero__shot">
-                ${heroScene()}
-                <span class="hero__sheen" aria-hidden="true"></span>
-            </div>
-
-            <div class="hero__float hero__float--a">
-                <span class="hero__float-icon">${ICONS.shield}</span>
-                <span><strong>Redone free</strong><span>if anything is missed</span></span>
-            </div>
-
-            <div class="hero__float hero__float--b">
-                <span class="hero__float-num">7<em>/7</em></span>
-                <span><strong>Scheduling</strong><span>nights &amp; weekends</span></span>
-            </div>
-        </div>
     </div>
+</section>`;
+}
 
-    <span class="hero__curve" aria-hidden="true"></span>
+/* --------------------------------------------------------------------------
+   Trust strip — the five promises directly under the hero
+   -------------------------------------------------------------------------- */
+const PROMISES = [
+    { icon: 'shield', title: 'Consistent Quality', body: 'Supervisor inspections every visit' },
+    { icon: 'clock', title: 'Flexible Scheduling', body: 'Nights, weekends & holidays' },
+    { icon: 'users', title: 'Trusted Professionals', body: 'Trained, uniformed & background-checked' },
+    { icon: 'leaf', title: 'Green Cleaning', body: 'Safer for people and the planet' },
+    { icon: 'building', title: 'All Commercial Spaces', body: 'Offices, medical, industrial, schools & more' }
+];
+
+function trustStrip() {
+    return `
+<section class="trust">
+    <div class="wrap">
+        <ul class="trust__grid">
+            ${PROMISES.map(
+                (p) => `<li data-reveal>
+                <span class="trust__icon">${ICONS[p.icon]}</span>
+                <span class="trust__text"><strong>${esc(p.title)}</strong><span>${esc(p.body)}</span></span>
+            </li>`
+            ).join('\n            ')}
+        </ul>
+    </div>
 </section>`;
 }
 
@@ -595,6 +632,7 @@ module.exports = {
     photo,
     hero,
     heroScene,
+    trustStrip,
     marquee,
     statBand,
     serviceCards,

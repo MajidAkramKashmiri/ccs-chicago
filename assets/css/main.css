@@ -722,46 +722,140 @@ a.topbar__item:hover { color: #fff; }
 }
 
 /* --------------------------------------------------------------------------
-   Hero — a saturated colour block, not a white page with blue accents.
-   A white ground with small accents is the default SaaS look; leading with
-   colour is what makes the top of the page feel like a brand.
+   Hero — full-bleed photograph with copy laid over it
    -------------------------------------------------------------------------- */
 .hero {
     position: relative;
     overflow: hidden;
     isolation: isolate;
     color: #fff;
-    background:
-        radial-gradient(120% 90% at 12% 0%, #1B6FE8 0%, transparent 55%),
-        radial-gradient(100% 100% at 88% 12%, #0A57C7 0%, transparent 58%),
-        linear-gradient(160deg, #071B36 0%, #0B2F6B 45%, #0A47A6 100%);
-    padding: clamp(2.6rem, 5vw, 4.6rem) 0 clamp(5rem, 8vw, 7rem);
-}
-
-/* Slow rotating light, so the panel is never a flat fill */
-.hero__beam {
-    position: absolute;
-    top: -60%; left: 50%;
-    width: 160%; aspect-ratio: 1;
-    transform: translateX(-50%);
-    z-index: 0;
-    pointer-events: none;
-    background: conic-gradient(from 0deg,
-        transparent 0deg, rgba(94, 163, 247, .16) 40deg, transparent 90deg,
-        transparent 180deg, rgba(56, 189, 248, .14) 220deg, transparent 280deg);
-    animation: beam 26s linear infinite;
-}
-
-@keyframes beam { to { transform: translateX(-50%) rotate(360deg); } }
-
-.hero__wrap {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: minmax(0, 1.02fr) minmax(0, .98fr);
-    gap: clamp(2rem, 4vw, 3.5rem);
+    background: #061428;
+    min-height: clamp(520px, 76vh, 780px);
+    display: flex;
     align-items: center;
+    padding: clamp(3rem, 6vw, 5rem) 0;
 }
+
+/* Slightly oversized so parallax has somewhere to move without exposing edges */
+.hero__bg {
+    position: absolute;
+    inset: -4% -3%;
+    z-index: 0;
+    will-change: transform;
+}
+
+.hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 62% 50%;
+    animation: heroDrift 38s ease-in-out infinite alternate;
+}
+
+@keyframes heroDrift {
+    from { transform: scale(1.02) translate3d(0, 0, 0); }
+    to   { transform: scale(1.09) translate3d(-1.4%, -0.8%, 0); }
+}
+
+/* Holds the headline legible over the art without flattening the photograph */
+.hero__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+        linear-gradient(100deg, rgba(4, 14, 30, .96) 0%, rgba(5, 18, 38, .90) 26%,
+                        rgba(6, 20, 42, .55) 46%, rgba(6, 20, 42, .12) 62%, rgba(6, 20, 42, 0) 78%),
+        linear-gradient(to top, rgba(4, 14, 30, .72), transparent 34%);
+}
+
+/* Cool bloom that breathes, echoing the light trail in the art */
+.hero__glow {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(46% 52% at 68% 56%, rgba(56, 189, 248, .30), transparent 68%);
+    mix-blend-mode: screen;
+    animation: bloom 9s ease-in-out infinite;
+}
+
+@keyframes bloom {
+    0%, 100% { opacity: .55; transform: scale(1); }
+    50%      { opacity: 1;   transform: scale(1.06); }
+}
+
+/* A broad, soft band of light travelling across the room.
+
+   This replaced an SVG pulse drawn along the trail in the artwork: that path
+   was authored in the image's coordinate space, but the photo is placed with
+   object-fit cover, so the two drifted apart at any viewport the image was
+   cropped differently. A full-bleed sweep cannot misalign. */
+.hero__sweep {
+    position: absolute;
+    top: -30%;
+    left: -35%;
+    width: 45%;
+    height: 170%;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(95deg, transparent, rgba(125, 211, 252, .16) 45%, rgba(255, 255, 255, .10) 55%, transparent);
+    transform: rotate(12deg);
+    filter: blur(22px);
+    mix-blend-mode: screen;
+    animation: heroSweep 13s ease-in-out infinite;
+}
+
+@keyframes heroSweep {
+    0%        { transform: translateX(0) rotate(12deg); opacity: 0; }
+    18%       { opacity: 1; }
+    70%, 100% { transform: translateX(330%) rotate(12deg); opacity: 0; }
+}
+
+/* Dust caught in the light — very slow, never in step */
+.motes { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+
+.motes i {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(186, 230, 253, .9);
+    box-shadow: 0 0 8px rgba(125, 211, 252, .9);
+    opacity: 0;
+    animation-name: mote;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes mote {
+    0%       { opacity: 0;   transform: translate3d(0, 14px, 0) scale(.6); }
+    18%      { opacity: .85; }
+    60%      { opacity: .5;  transform: translate3d(10px, -26px, 0) scale(1); }
+    100%     { opacity: 0;   transform: translate3d(-6px, -60px, 0) scale(.5); }
+}
+
+.hero__wrap { position: relative; z-index: 2; width: min(100% - (var(--gut) * 2), var(--wrap)); }
+
+.hero__text { max-width: 46rem; }
+
+@media (min-width: 1200px) {
+    .hero__text { padding-left: clamp(0rem, 1.6vw, 2rem); }
+}
+
+/* Staggered entrance on load — the page assembles rather than appearing */
+.js .hero [data-in] {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: heroIn .8s cubic-bezier(.2, .7, .2, 1) forwards;
+}
+.js .hero [data-in="1"] { animation-delay: .10s; }
+.js .hero [data-in="2"] { animation-delay: .22s; }
+.js .hero [data-in="3"] { animation-delay: .38s; }
+.js .hero [data-in="4"] { animation-delay: .50s; }
+.js .hero [data-in="5"] { animation-delay: .62s; }
+
+@keyframes heroIn { to { opacity: 1; transform: none; } }
 
 .hero__kicker {
     display: inline-flex;
@@ -773,85 +867,69 @@ a.topbar__item:hover { color: #fff; }
     letter-spacing: .14em;
     text-transform: uppercase;
     color: #fff;
-    background: rgba(255, 255, 255, .12);
-    border: 1px solid rgba(255, 255, 255, .26);
+    background: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255, 255, 255, .28);
     border-radius: var(--r-pill);
     padding: .45rem .95rem;
     margin: 0 0 1.3rem;
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(8px);
 }
 .hero__kicker svg { width: 14px; height: 14px; color: var(--blue-300); }
 
-/* ----- headline with the rotating noun ----- */
 .hero__title {
     color: #fff;
-    font-size: clamp(2.3rem, 5vw, 4rem);
+    font-size: clamp(2.3rem, 5vw, 4.05rem);
     line-height: 1.04;
     letter-spacing: -0.03em;
     margin-bottom: 1.1rem;
+    text-shadow: 0 2px 30px rgba(2, 10, 24, .55);
 }
 
 .hero__line { display: block; }
 
-.hero__rot {
-    display: block;
-    position: relative;
-    height: 1.08em;
-    overflow: hidden;
-}
+.hero__rot { display: block; position: relative; height: 1.08em; overflow: hidden; }
 
 .hero__rot-word {
     position: absolute;
     inset: 0;
     display: block;
     white-space: nowrap;
-    background: linear-gradient(95deg, #7DD3FC, #38BDF8 45%, #A5B4FC);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: #4EA8FF;
     opacity: 0;
     transform: translateY(100%);
     transition: opacity .45s ease, transform .45s cubic-bezier(.2, .8, .2, 1);
 }
-
 .hero__rot-word.is-in  { opacity: 1; transform: translateY(0); }
 .hero__rot-word.is-out { opacity: 0; transform: translateY(-100%); }
 
 .hero__body {
-    max-width: 46ch;
+    max-width: 40ch;
     font-size: clamp(1rem, 1.3vw, 1.08rem);
-    color: rgba(255, 255, 255, .82);
+    color: rgba(233, 242, 255, .88);
+    text-shadow: 0 1px 16px rgba(2, 10, 24, .5);
 }
 
-.hero__chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .5rem;
-    margin: 1.4rem 0 0;
-}
+.hero__chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.4rem 0 0; max-width: 40rem; }
 
 .hero__chips li {
     display: inline-flex;
     align-items: center;
     gap: .45rem;
-    background: rgba(255, 255, 255, .1);
-    border: 1px solid rgba(255, 255, 255, .2);
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .22);
     border-radius: var(--r-pill);
-    padding: .45rem .9rem;
-    font-size: .84rem;
+    padding: .48rem .95rem;
+    font-size: .85rem;
     font-weight: 600;
     color: #fff;
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(8px);
+    transition: background-color .2s ease, border-color .2s ease, transform .2s ease;
 }
+.hero__chips li:hover { background: rgba(255, 255, 255, .16); border-color: rgba(125, 211, 252, .7); transform: translateY(-2px); }
+.hero__chips svg { width: 15px; height: 15px; flex: none; color: #7DD3FC; }
 
-.hero__chips svg {
-    width: 15px; height: 15px; flex: none;
-    color: #7DD3FC;
-}
-
-/* ----- CTA treatments ----- */
-.btn--glow { box-shadow: 0 14px 40px -12px rgba(125, 211, 252, .75); }
-.btn--glow:hover { box-shadow: 0 20px 46px -12px rgba(125, 211, 252, .95); }
+.btn--glow { box-shadow: 0 16px 44px -14px rgba(125, 211, 252, .8); }
+.btn--glow:hover { box-shadow: 0 22px 50px -14px rgba(125, 211, 252, 1); }
 
 .btn--ring { position: relative; }
 .btn--ring::after {
@@ -871,17 +949,72 @@ a.topbar__item:hover { color: #fff; }
     100% { opacity: 0; }
 }
 
-/* ----- media ----- */
-.hero__media { position: relative; }
+@media (max-width: 900px) {
+    .hero { min-height: 0; }
+    .hero__bg img { object-position: 72% 50%; }
+    .hero__scrim {
+        background:
+            linear-gradient(180deg, rgba(4, 14, 30, .92) 0%, rgba(5, 18, 38, .80) 45%, rgba(4, 14, 30, .92) 100%);
+    }
+    .hero__body { max-width: none; }
+}
 
-.hero__shot {
-    position: relative;
-    border-radius: var(--r-lg);
-    overflow: hidden;
-    aspect-ratio: 4 / 3.1;
-    box-shadow: 0 40px 80px -30px rgba(3, 12, 28, .85);
-    border: 1px solid rgba(255, 255, 255, .18);
-    transform: rotate(1.2deg);
+/* --------------------------------------------------------------------------
+   Trust strip
+   -------------------------------------------------------------------------- */
+.trust {
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    padding: clamp(1.4rem, 2.5vw, 2rem) 0;
+}
+
+.trust__grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(.8rem, 1.6vw, 1.6rem);
+}
+
+.trust__grid li {
+    display: flex;
+    align-items: flex-start;
+    gap: .7rem;
+    padding-left: clamp(.8rem, 1.6vw, 1.6rem);
+    border-left: 1px solid var(--line);
+}
+.trust__grid li:first-child { border-left: 0; padding-left: 0; }
+
+.trust__icon {
+    display: grid;
+    place-items: center;
+    width: 38px; height: 38px; flex: none;
+    border-radius: var(--r-sm);
+    background: var(--blue-50);
+    color: var(--blue-600);
+    transition: background-color .2s ease, color .2s ease, transform .2s ease;
+}
+.trust__grid li:hover .trust__icon { background: var(--blue-600); color: #fff; transform: translateY(-2px); }
+.trust__icon svg { width: 20px; height: 20px; }
+
+.trust__text strong {
+    display: block;
+    font-family: var(--display);
+    font-size: .93rem;
+    color: var(--ink);
+    line-height: 1.25;
+}
+.trust__text span { font-size: .82rem; color: var(--muted); line-height: 1.4; display: block; }
+
+@media (max-width: 1100px) {
+    .trust__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 1.2rem; }
+    .trust__grid li:nth-child(4) { border-left: 0; padding-left: 0; }
+}
+@media (max-width: 700px) {
+    .trust__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .trust__grid li:nth-child(odd) { border-left: 0; padding-left: 0; }
+}
+@media (max-width: 430px) {
+    .trust__grid { grid-template-columns: 1fr; }
+    .trust__grid li { border-left: 0; padding-left: 0; }
 }
 
 /* --------------------------------------------------------------------------
@@ -1895,9 +2028,11 @@ a.topbar__item:hover { color: #fff; }
     .js [data-reveal] { opacity: 1; transform: none; transition-delay: 0s !important; }
 
     /* Keep the light and grid as static colour, just stop them moving. */
-    .hero__sheen, .hero__beam { display: none; }
+    .hero__sheen, .hero__beam, .motes, .hero__sweep { display: none; }
     .fx i, .grid-fx, .marquee__track, .hero__float, .btn--ring::after,
+    .hero__bg img, .hero__glow, .js .hero [data-in],
     .scene__rig, .scene__wipe, .scene__clean, .scene__spark { animation: none !important; }
+    .js .hero [data-in] { opacity: 1; transform: none; }
     /* Motion off: show the tower already cleaned rather than mid-wipe. */
     .scene__wipe { transform: translateY(470px); }
     .hero__rot-word { transition: none !important; }

@@ -31,7 +31,7 @@
 
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/jakarta-latin-var.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-latin-var.woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/main.css?v=2a6e86be">
+<link rel="stylesheet" href="assets/css/main.css?v=10725820">
 <script>document.documentElement.className+=' js';</script>
 <script type="application/ld+json">
 {
@@ -348,31 +348,44 @@
 
 <main id="main">
 
-<section class="hero">
-    <span class="fx fx--hero" aria-hidden="true"><i></i><i></i><i></i></span>
-    <span class="hero__beam" aria-hidden="true"></span>
+<section class="hero" data-hero>
+    <div class="hero__bg" data-parallax>
+        <img src="assets/img/hero/hero-bg.jpg"
+             srcset="assets/img/hero/hero-bg-800.jpg 800w, assets/img/hero/hero-bg-1200.jpg 1200w, assets/img/hero/hero-bg.jpg 1659w"
+             sizes="100vw" alt="" aria-hidden="true"
+             width="1659" height="948" fetchpriority="high" decoding="async">
+    </div>
+
+    <span class="hero__scrim" aria-hidden="true"></span>
+    <span class="hero__glow" aria-hidden="true"></span>
+
+    <span class="hero__sweep" aria-hidden="true"></span>
+
+    <span class="motes" aria-hidden="true"><i style="left:14%;top:62%;animation-delay:-0s;animation-duration:17s"></i><i style="left:27%;top:38%;animation-delay:-3.2s;animation-duration:21s"></i><i style="left:41%;top:74%;animation-delay:-6.1s;animation-duration:19s"></i><i style="left:58%;top:46%;animation-delay:-1.8s;animation-duration:23s"></i><i style="left:69%;top:66%;animation-delay:-4.6s;animation-duration:18s"></i><i style="left:80%;top:34%;animation-delay:-7.4s;animation-duration:25s"></i><i style="left:88%;top:58%;animation-delay:-2.5s;animation-duration:20s"></i><i style="left:50%;top:84%;animation-delay:-5.3s;animation-duration:22s"></i></span>
+
     <div class="wrap hero__wrap">
         <div class="hero__text">
-            <p class="hero__kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Chicago &amp; the western suburbs</p>
+            <p class="hero__kicker" data-in="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Chicago &amp; the western suburbs</p>
 
-            <h1 class="hero__title">
+            <h1 class="hero__title" data-in="2">
                 <span class="hero__line">We keep Chicago's</span>
-                <span class="hero__rot" data-rotate='["office towers","warehouses","plants","clinics","schools","gyms"]'>
-                    <span class="hero__rot-word is-in">office towers</span>
+                <span class="hero__rot" data-rotate='["businesses","office towers","warehouses","plants","clinics","schools"]'>
+                    <span class="hero__rot-word is-in">businesses</span>
                 </span>
                 <span class="hero__line">running spotless.</span>
             </h1>
 
-            <p class="hero__body">Fifteen specialist cleaning programs under one contract, across Chicago and the
-            western suburbs. Every job runs to a written scope — and a supervisor inspects against it.</p>
+            <p class="hero__body" data-in="3">Fifteen specialist cleaning programs under one contract,
+            across Chicago and the western suburbs. Every job runs to a written scope — and a supervisor
+            inspects against it.</p>
 
-            <ul class="hero__chips">
+            <ul class="hero__chips" data-in="4">
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5.5 5.5L20 7"/></svg><span>Written scope, inspected every visit</span></li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5.5 5.5L20 7"/></svg><span>Nights &amp; weekends, no premium</span></li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5.5 5.5L20 7"/></svg><span>Insured &amp; background-checked</span></li>
             </ul>
 
-            <div class="btn-row">
+            <div class="btn-row" data-in="5">
                 <a class="btn btn--lg btn--white btn--glow" href="contact.html" data-cta="hero-quote">
                     Get a free quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                 </a>
@@ -381,208 +394,35 @@
                 </a>
             </div>
         </div>
-
-        <div class="hero__media">
-            <div class="hero__shot">
-                
-<div class="scene" role="img" aria-label="Illustration: a window-cleaning gondola descending a glass tower, leaving gleaming glass behind it">
-<svg viewBox="48 28 524 442" preserveAspectRatio="xMidYMid slice" focusable="false">
-    <defs>
-        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#DCEBFF"/>
-            <stop offset="1" stop-color="#F7FBFF"/>
-        </linearGradient>
-        <linearGradient id="cleanGlass" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#7DD3FC"/>
-            <stop offset="0.5" stop-color="#38BDF8"/>
-            <stop offset="1" stop-color="#2563EB"/>
-        </linearGradient>
-        <linearGradient id="tower" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stop-color="#12325E"/>
-            <stop offset="1" stop-color="#0A2140"/>
-        </linearGradient>
-
-        <!-- Travels down with the gondola, revealing the clean facade -->
-        <clipPath id="wipe" clipPathUnits="userSpaceOnUse">
-            <rect class="scene__wipe" x="0" y="-470" width="620" height="470"/>
-        </clipPath>
-    </defs>
-
-    <rect width="620" height="470" fill="url(#sky)"/>
-
-    <!-- Neighbouring towers, for depth -->
-    <g opacity=".5">
-        <rect x="0" y="150" width="58" height="320" fill="#C3D9F2"/>
-        <rect x="566" y="110" width="54" height="360" fill="#C3D9F2"/>
-        <rect x="14" y="196" width="12" height="12" fill="#fff" opacity=".7"/>
-        <rect x="34" y="240" width="12" height="12" fill="#fff" opacity=".7"/>
-        <rect x="584" y="170" width="12" height="12" fill="#fff" opacity=".7"/>
-    </g>
-
-    <!-- The tower -->
-    <rect x="62" y="38" width="496" height="432" rx="6" fill="url(#tower)"/>
-
-    <!-- Grimy glass -->
-    <g><rect x="78" y="58" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="156" y="58" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="234" y="58" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="312" y="58" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="390" y="58" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="468" y="58" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="78" y="112" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="156" y="112" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="234" y="112" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="312" y="112" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="390" y="112" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="468" y="112" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="78" y="166" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="156" y="166" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="234" y="166" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="312" y="166" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="390" y="166" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="468" y="166" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="78" y="220" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="156" y="220" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="234" y="220" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="312" y="220" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="390" y="220" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="468" y="220" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="78" y="274" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="156" y="274" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="234" y="274" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="312" y="274" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="390" y="274" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="468" y="274" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="78" y="328" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="156" y="328" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="234" y="328" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="312" y="328" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="390" y="328" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="468" y="328" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="78" y="382" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="156" y="382" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="234" y="382" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="312" y="382" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="390" y="382" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="468" y="382" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="78" y="436" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="156" y="436" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="234" y="436" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="312" y="436" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="390" y="436" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/><rect x="468" y="436" width="68" height="44" rx="3" fill="#5C7391" opacity=".9"/></g>
-    <g opacity=".22"><rect x="78" y="58" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="156" y="58" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="234" y="58" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="312" y="58" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="390" y="58" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="468" y="58" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="78" y="112" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="156" y="112" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="234" y="112" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="312" y="112" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="390" y="112" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="468" y="112" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="78" y="166" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="156" y="166" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="234" y="166" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="312" y="166" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="390" y="166" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="468" y="166" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="78" y="220" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="156" y="220" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="234" y="220" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="312" y="220" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="390" y="220" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="468" y="220" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="78" y="274" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="156" y="274" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="234" y="274" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="312" y="274" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="390" y="274" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="468" y="274" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="78" y="328" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="156" y="328" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="234" y="328" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="312" y="328" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="390" y="328" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="468" y="328" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="78" y="382" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="156" y="382" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="234" y="382" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="312" y="382" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="390" y="382" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="468" y="382" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="78" y="436" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="156" y="436" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="234" y="436" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="312" y="436" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="390" y="436" width="68" height="44" rx="3" fill="#2A3F5C"/><rect x="468" y="436" width="68" height="44" rx="3" fill="#2A3F5C"/></g>
-
-    <!-- Cleaned glass, revealed behind the squeegee -->
-    <g class="scene__clean" clip-path="url(#wipe)">
-        <g><rect x="78" y="58" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="156" y="58" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="234" y="58" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="312" y="58" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="390" y="58" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="468" y="58" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="78" y="112" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="156" y="112" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="234" y="112" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="312" y="112" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="390" y="112" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="468" y="112" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="78" y="166" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="156" y="166" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="234" y="166" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="312" y="166" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="390" y="166" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="468" y="166" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="78" y="220" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="156" y="220" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="234" y="220" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="312" y="220" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="390" y="220" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="468" y="220" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="78" y="274" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="156" y="274" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="234" y="274" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="312" y="274" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="390" y="274" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="468" y="274" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="78" y="328" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="156" y="328" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="234" y="328" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="312" y="328" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="390" y="328" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="468" y="328" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="78" y="382" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="156" y="382" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="234" y="382" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="312" y="382" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="390" y="382" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="468" y="382" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="78" y="436" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="156" y="436" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="234" y="436" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="312" y="436" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="390" y="436" width="68" height="44" rx="3" fill="url(#cleanGlass)"/><rect x="468" y="436" width="68" height="44" rx="3" fill="url(#cleanGlass)"/></g>
-        <g><path d="M86 96 L104 64" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M108 96 L118 72" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M164 96 L182 64" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M186 96 L196 72" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M242 96 L260 64" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M264 96 L274 72" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M320 96 L338 64" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M342 96 L352 72" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M398 96 L416 64" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M420 96 L430 72" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M476 96 L494 64" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M498 96 L508 72" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M86 150 L104 118" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M108 150 L118 126" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M164 150 L182 118" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M186 150 L196 126" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M242 150 L260 118" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M264 150 L274 126" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M320 150 L338 118" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M342 150 L352 126" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M398 150 L416 118" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M420 150 L430 126" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M476 150 L494 118" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M498 150 L508 126" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M86 204 L104 172" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M108 204 L118 180" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M164 204 L182 172" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M186 204 L196 180" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M242 204 L260 172" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M264 204 L274 180" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M320 204 L338 172" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M342 204 L352 180" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M398 204 L416 172" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M420 204 L430 180" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M476 204 L494 172" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M498 204 L508 180" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M86 258 L104 226" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M108 258 L118 234" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M164 258 L182 226" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M186 258 L196 234" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M242 258 L260 226" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M264 258 L274 234" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M320 258 L338 226" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M342 258 L352 234" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M398 258 L416 226" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M420 258 L430 234" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M476 258 L494 226" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M498 258 L508 234" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M86 312 L104 280" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M108 312 L118 288" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M164 312 L182 280" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M186 312 L196 288" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M242 312 L260 280" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M264 312 L274 288" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M320 312 L338 280" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M342 312 L352 288" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M398 312 L416 280" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M420 312 L430 288" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M476 312 L494 280" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M498 312 L508 288" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M86 366 L104 334" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M108 366 L118 342" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M164 366 L182 334" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M186 366 L196 342" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M242 366 L260 334" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M264 366 L274 342" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M320 366 L338 334" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M342 366 L352 342" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M398 366 L416 334" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M420 366 L430 342" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M476 366 L494 334" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M498 366 L508 342" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M86 420 L104 388" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M108 420 L118 396" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M164 420 L182 388" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M186 420 L196 396" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M242 420 L260 388" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M264 420 L274 396" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M320 420 L338 388" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M342 420 L352 396" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M398 420 L416 388" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M420 420 L430 396" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M476 420 L494 388" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M498 420 L508 396" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M86 474 L104 442" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M108 474 L118 450" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M164 474 L182 442" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M186 474 L196 450" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M242 474 L260 442" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M264 474 L274 450" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M320 474 L338 442" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M342 474 L352 450" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M398 474 L416 442" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M420 474 L430 450" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/><path d="M476 474 L494 442" stroke="#fff" stroke-width="5"
-                        stroke-linecap="round" opacity=".55"/><path d="M498 474 L508 450" stroke="#fff" stroke-width="3"
-                        stroke-linecap="round" opacity=".35"/></g>
-        <g class="scene__sparks"><path class="scene__spark" style="animation-delay:0s"
-                   d="M150 141 L152.6 147.4 L159 150 L152.6 152.6 L150 159
-                      L147.4 152.6 L141 150 L147.4 147.4 Z" fill="#fff"/><path class="scene__spark" style="animation-delay:0.4s"
-                   d="M300 201 L302.6 207.4 L309 210 L302.6 212.6 L300 219
-                      L297.4 212.6 L291 210 L297.4 207.4 Z" fill="#fff"/><path class="scene__spark" style="animation-delay:0.8s"
-                   d="M470 161 L472.6 167.4 L479 170 L472.6 172.6 L470 179
-                      L467.4 172.6 L461 170 L467.4 167.4 Z" fill="#fff"/><path class="scene__spark" style="animation-delay:1.2s"
-                   d="M220 311 L222.6 317.4 L229 320 L222.6 322.6 L220 329
-                      L217.4 322.6 L211 320 L217.4 317.4 Z" fill="#fff"/><path class="scene__spark" style="animation-delay:1.6s"
-                   d="M420 351 L422.6 357.4 L429 360 L422.6 362.6 L420 369
-                      L417.4 362.6 L411 360 L417.4 357.4 Z" fill="#fff"/><path class="scene__spark" style="animation-delay:2s"
-                   d="M120 251 L122.6 257.4 L129 260 L122.6 262.6 L120 269
-                      L117.4 262.6 L111 260 L117.4 257.4 Z" fill="#fff"/></g>
-    </g>
-
-    <!-- Gondola: cables, cradle, squeegee, operator -->
-    <g class="scene__rig">
-        <path d="M196 -470 V 96" stroke="#0A2140" stroke-width="3"/>
-        <path d="M424 -470 V 96" stroke="#0A2140" stroke-width="3"/>
-
-        <!-- squeegee blade and the water it leaves -->
-        <rect x="150" y="86" width="320" height="7" rx="3.5" fill="#E2EEFE"/>
-        <rect x="150" y="93" width="320" height="4" rx="2" fill="#38BDF8" opacity=".85"/>
-
-        <rect x="168" y="98" width="284" height="52" rx="8" fill="#0D57C0"/>
-        <rect x="168" y="98" width="284" height="52" rx="8" fill="none" stroke="#2E82F0" stroke-width="2"/>
-        <rect x="182" y="112" width="46" height="26" rx="4" fill="#9CC6FB" opacity=".55"/>
-
-        <!-- operator -->
-        <circle cx="300" cy="80" r="13" fill="#F5C9A8"/>
-        <path d="M287 74a13 13 0 0 1 26 0z" fill="#0B2545"/>
-        <path d="M282 98h36a10 10 0 0 1 10 10v14h-56v-14a10 10 0 0 1 10-10z" fill="#FFD447"/>
-        <path d="M318 104l26-10" stroke="#F5C9A8" stroke-width="7" stroke-linecap="round"/>
-    </g>
-</svg>
-</div>
-                <span class="hero__sheen" aria-hidden="true"></span>
-            </div>
-
-            <div class="hero__float hero__float--a">
-                <span class="hero__float-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3.5v6c0 4.8-3.4 9.2-8 10.5-4.6-1.3-8-5.7-8-10.5v-6z"/><path d="M9 12l2 2 4-4"/></svg></span>
-                <span><strong>Redone free</strong><span>if anything is missed</span></span>
-            </div>
-
-            <div class="hero__float hero__float--b">
-                <span class="hero__float-num">7<em>/7</em></span>
-                <span><strong>Scheduling</strong><span>nights &amp; weekends</span></span>
-            </div>
-        </div>
     </div>
-
-    <span class="hero__curve" aria-hidden="true"></span>
 </section>
 
-<div class="marquee" aria-hidden="true">
-    <div class="marquee__track"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 21h19"/><path d="M6 21V8l6-4.5V21"/><path d="M12 10h5.5V21"/><path d="M8.5 9.5h1.5M8.5 13h1.5M8.5 16.5h1.5M14.5 13.5h1M14.5 17h1"/></svg>Offices &amp; multi-tenant buildings</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 21h19"/><path d="M3.5 21V10l5 3.2V10l5 3.2V10l5 3.2V21"/><path d="M5.5 3.5h3l.5 5.2h-4z"/><path d="M7 17h2M12 17h2M17 17h2"/></svg>Plants &amp; industrial facilities</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8.5v7a1.6 1.6 0 0 1-.8 1.4l-6.4 3.6a1.6 1.6 0 0 1-1.6 0l-6.4-3.6A1.6 1.6 0 0 1 5 15.5v-7"/><path d="M3.2 8.1l8-4.5a1.6 1.6 0 0 1 1.6 0l8 4.5"/><path d="M3.2 8.1L12 13l8.8-4.9"/><path d="M12 13v8.5"/></svg>Warehouses &amp; distribution</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M12 8v8M8 12h8"/></svg>Medical &amp; dental practices</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9 4.2-9 4.2-9-4.2z"/><path d="M6.5 10v5.4c0 1.6 2.5 2.9 5.5 2.9s5.5-1.3 5.5-2.9V10"/><path d="M21 7.7v5.6"/></svg>Schools &amp; campuses</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5v5M6 7v10M18 7v10M21 9.5v5"/><path d="M6 12h12"/></svg>Gyms &amp; fitness studios</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5V20a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-9.5"/><path d="M3 10.5l1.6-6A1 1 0 0 1 5.6 4h12.8a1 1 0 0 1 1 .7l1.6 5.8a2.8 2.8 0 0 1-5.5 0 2.8 2.8 0 0 1-5.5 0 2.8 2.8 0 0 1-5.5 0z"/><path d="M9.5 21v-5.5h5V21"/></svg>Retail &amp; showrooms</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17a9 9 0 0 1 18 0"/><path d="M2 17h20a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z"/><path d="M9.5 17V6.2A1.7 1.7 0 0 1 11.2 4.5h1.6a1.7 1.7 0 0 1 1.7 1.7V17"/></svg>Construction &amp; fit-out</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 21h19"/><path d="M6 21V8l6-4.5V21"/><path d="M12 10h5.5V21"/><path d="M8.5 9.5h1.5M8.5 13h1.5M8.5 16.5h1.5M14.5 13.5h1M14.5 17h1"/></svg>Offices &amp; multi-tenant buildings</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 21h19"/><path d="M3.5 21V10l5 3.2V10l5 3.2V10l5 3.2V21"/><path d="M5.5 3.5h3l.5 5.2h-4z"/><path d="M7 17h2M12 17h2M17 17h2"/></svg>Plants &amp; industrial facilities</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8.5v7a1.6 1.6 0 0 1-.8 1.4l-6.4 3.6a1.6 1.6 0 0 1-1.6 0l-6.4-3.6A1.6 1.6 0 0 1 5 15.5v-7"/><path d="M3.2 8.1l8-4.5a1.6 1.6 0 0 1 1.6 0l8 4.5"/><path d="M3.2 8.1L12 13l8.8-4.9"/><path d="M12 13v8.5"/></svg>Warehouses &amp; distribution</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M12 8v8M8 12h8"/></svg>Medical &amp; dental practices</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9 4.2-9 4.2-9-4.2z"/><path d="M6.5 10v5.4c0 1.6 2.5 2.9 5.5 2.9s5.5-1.3 5.5-2.9V10"/><path d="M21 7.7v5.6"/></svg>Schools &amp; campuses</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5v5M6 7v10M18 7v10M21 9.5v5"/><path d="M6 12h12"/></svg>Gyms &amp; fitness studios</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5V20a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-9.5"/><path d="M3 10.5l1.6-6A1 1 0 0 1 5.6 4h12.8a1 1 0 0 1 1 .7l1.6 5.8a2.8 2.8 0 0 1-5.5 0 2.8 2.8 0 0 1-5.5 0 2.8 2.8 0 0 1-5.5 0z"/><path d="M9.5 21v-5.5h5V21"/></svg>Retail &amp; showrooms</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17a9 9 0 0 1 18 0"/><path d="M2 17h20a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z"/><path d="M9.5 17V6.2A1.7 1.7 0 0 1 11.2 4.5h1.6a1.7 1.7 0 0 1 1.7 1.7V17"/></svg>Construction &amp; fit-out</span></div>
-</div>
+<section class="trust">
+    <div class="wrap">
+        <ul class="trust__grid">
+            <li data-reveal>
+                <span class="trust__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3.5v6c0 4.8-3.4 9.2-8 10.5-4.6-1.3-8-5.7-8-10.5v-6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+                <span class="trust__text"><strong>Consistent Quality</strong><span>Supervisor inspections every visit</span></span>
+            </li>
+            <li data-reveal>
+                <span class="trust__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
+                <span class="trust__text"><strong>Flexible Scheduling</strong><span>Nights, weekends &amp; holidays</span></span>
+            </li>
+            <li data-reveal>
+                <span class="trust__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.4"/><path d="M2.8 20a6.2 6.2 0 0 1 12.4 0"/><path d="M16.5 5.2a3.4 3.4 0 0 1 0 6.6M17.5 14.3a6.2 6.2 0 0 1 3.7 5.7"/></svg></span>
+                <span class="trust__text"><strong>Trusted Professionals</strong><span>Trained, uniformed &amp; background-checked</span></span>
+            </li>
+            <li data-reveal>
+                <span class="trust__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20c0-8 5-13 16-14 0 10-4.5 15-11 15a5 5 0 0 1-5-1z"/><path d="M9 15c2.5-3 5.3-5 8.5-6.5"/></svg></span>
+                <span class="trust__text"><strong>Green Cleaning</strong><span>Safer for people and the planet</span></span>
+            </li>
+            <li data-reveal>
+                <span class="trust__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V5.5A1.5 1.5 0 0 1 6.5 4h6A1.5 1.5 0 0 1 14 5.5V21"/><path d="M14 10h3.5A1.5 1.5 0 0 1 19 11.5V21"/><path d="M8 8h3M8 12h3M8 16h3M16.5 14h1M16.5 17.5h1"/></svg></span>
+                <span class="trust__text"><strong>All Commercial Spaces</strong><span>Offices, medical, industrial, schools &amp; more</span></span>
+            </li>
+        </ul>
+    </div>
+</section>
 
 <section class="stat-band">
     <span class="grid-fx" aria-hidden="true"></span>
@@ -1099,6 +939,6 @@
     </div>
 </footer>
 
-<script src="assets/js/main.js?v=4086a657" defer></script>
+<script src="assets/js/main.js?v=2fb617d2" defer></script>
 </body>
 </html>

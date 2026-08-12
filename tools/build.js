@@ -179,7 +179,7 @@ pages.push({
     ]),
     body: (depth) => `
 ${C.hero(depth)}
-${C.marquee()}
+${C.trustStrip()}
 ${C.statBand()}
 
 <section class="section">

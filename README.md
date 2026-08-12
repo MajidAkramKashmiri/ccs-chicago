@@ -157,7 +157,37 @@ The look is deliberately corporate rather than consumer: white ground, navy
 bands for contrast, tight 8–16px radii, and a faint blueprint grid that reads
 as engineered rather than decorative.
 
-### Imagery
+### Hero background
+
+`assets/img/hero/hero-bg.jpg` is a client-supplied AI-generated image, served at
+three widths (800/1200/1659) behind `srcset`, ~283KB at full size. It is
+composed with a deliberately dark left third so the headline sits **on** the
+photograph rather than in a panel beside it.
+
+Layers stacked over it, all pure CSS:
+
+| Layer | What it does |
+|---|---|
+| `.hero__scrim` | Diagonal darkening so the copy stays legible over the art |
+| `.hero__glow` | Cool bloom that breathes, echoing the light trail in the image |
+| `.hero__sweep` | A broad band of light travelling across the room every 13s |
+| `.motes` | Eight dust specks drifting on unequal cycles |
+| `[data-in]` | Staggered entrance — the hero assembles rather than appearing |
+
+The background also drifts slower than the page scrolls and leans a few pixels
+toward the pointer (`[data-parallax]` in `main.js`). Both are clamped small on
+purpose: parallax reads as depth when it is barely noticed and as a gimmick
+when it is not.
+
+An earlier version animated an SVG pulse along the light trail in the artwork.
+It was removed: the path was authored in the image's coordinate space, but the
+photo is placed with `object-fit: cover`, so the two drifted apart at any
+viewport where the image cropped differently. The sweep cannot misalign.
+
+To replace the background, drop a new file in at the same three widths and keep
+the dark-left composition, or adjust `.hero__scrim` to suit the new image.
+
+### Service imagery
 
 Sixteen photographs in `assets/img/work/` — one per service plus a hero
 backdrop. Two sizes each (`-480.jpg` and a 960px full) behind `srcset`, lazy

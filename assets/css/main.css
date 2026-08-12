@@ -2031,7 +2031,7 @@ a.topbar__item:hover { color: #fff; }
     isolation:isolate;
     overflow:hidden;
     display: grid;
-    grid-template-columns:minmax(260px,1.05fr) minmax(230px,.88fr) minmax(180px,.62fr) minmax(280px,.82fr);
+    grid-template-columns:minmax(260px,1.05fr) minmax(220px,.7fr) minmax(180px,.62fr) minmax(280px,.82fr);
     gap:clamp(2rem,4vw,5rem);
 }
 .footer-top > :not(.footer-skyline) { position:relative; z-index:1; }
@@ -2044,9 +2044,9 @@ a.topbar__item:hover { color: #fff; }
     pointer-events:none;
     opacity:.5;
     mix-blend-mode:screen;
-    filter:saturate(1.12) contrast(1.08);
-    -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 8%,#000 57%,transparent 91%);
-    mask-image:linear-gradient(90deg,transparent 0%,#000 8%,#000 57%,transparent 91%);
+    filter:saturate(1.08) contrast(1.14) brightness(.82);
+    -webkit-mask-image:radial-gradient(ellipse 68% 58% at 29% 77%,#000 0%,#000 42%,rgba(0,0,0,.72) 58%,transparent 100%);
+    mask-image:radial-gradient(ellipse 68% 58% at 29% 77%,#000 0%,#000 42%,rgba(0,0,0,.72) 58%,transparent 100%);
 }
 .footer-skyline img { display:block; width:100%; height:auto; }
 @media (max-width: 1180px) { .footer-top { grid-template-columns:1.2fr 1fr 1fr; } .footer-quote { grid-column:1/-1; display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:1rem 2rem; } .footer-quote p,.footer-quote__or,.footer-quote__phone { grid-column:2; } .footer-quote .btn { grid-column:3; grid-row:1/3; } }
@@ -2085,7 +2085,7 @@ a.topbar__item:hover { color: #fff; }
 .footer-col .footer-all { display:inline-flex; align-items:center; gap:.4rem; color:var(--blue-300); font-weight:700; margin-top:.35rem; }
 .footer-all svg { width:15px; height:15px; }
 .footer-service-list li:not(:last-child) { border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:.55rem; }
-.footer-service-list li:not(:last-child) a { display:inline-flex; align-items:center; gap:.55rem; }
+.footer-service-list li:not(:last-child) a { display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
 .footer-service-list li:not(:last-child) a::after { content:'›'; color:var(--blue-400); font-size:1.35rem; line-height:.8; }
 
 .socials { display: flex; gap: .45rem; margin-top: 1.1rem; }

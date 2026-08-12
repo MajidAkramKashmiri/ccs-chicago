@@ -1,7 +1,7 @@
 # Commercial Cleaning Systems of Chicago — website
 
 Static marketing site for Commercial Cleaning Systems of Chicago — commercial,
-industrial and institutional cleaning across Chicago and the western suburbs.
+industrial and institutional cleaning serving Northern Illinois.
 
 Plain HTML, CSS and JavaScript. No framework, no runtime dependencies, nothing
 to install on the server — upload the folder and it works.

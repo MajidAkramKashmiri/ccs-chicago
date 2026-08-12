@@ -326,7 +326,7 @@ function footer(depth) {
                         <span class="brand__tag">of Chicago</span>
                     </span>
                 </a>
-                <p>Commercial, industrial and institutional cleaning across Chicago and the western suburbs.
+                <p>Commercial, industrial and institutional cleaning serving Northern Illinois.
                 Insured, background-checked crews working to a written scope and inspected after every visit.</p>
                 <a class="footer-phone" href="${BUSINESS.phoneHref}">${ICONS.phone}<span>${esc(
         BUSINESS.phone

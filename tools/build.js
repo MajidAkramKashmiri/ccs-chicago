@@ -18,7 +18,7 @@ const C = require('./components');
 const ROOT = path.join(__dirname, '..');
 
 const DESCRIPTION =
-    'Commercial, industrial and institutional cleaning across Chicago and the western suburbs — janitorial, ' +
+    'Commercial, industrial and institutional cleaning serving Northern Illinois — janitorial, ' +
     'industrial, warehouse, medical, school, carpet, window, tile and post-construction cleaning.';
 
 /* --------------------------------------------------------------------------
@@ -185,7 +185,7 @@ pages.push({
     path: '/index.html',
     title: 'Commercial Cleaning Systems of Chicago | Commercial & Industrial Cleaning',
     description:
-        'Commercial, industrial and institutional cleaning in Chicago and the western suburbs. Janitorial, warehouse, ' +
+        'Commercial, industrial and institutional cleaning serving Northern Illinois. Janitorial, warehouse, ' +
         'medical, school, carpet, window and post-construction cleaning. Written scope, fixed price, free quote.',
     schema: graph([
         localBusiness(),
@@ -236,7 +236,7 @@ ${C.trustStrip()}
     <div class="wrap">
         ${C.heading({
             eyebrow: 'Where we work',
-            title: 'Chicago and the western suburbs',
+            title: 'Serving Northern Illinois',
             lede: 'Scheduled routes across the city and the I-88 and I-290 corridors.'
         })}
         ${C.areaGrid(depth)}
@@ -269,7 +269,7 @@ pages.push({
     title: `All ${SERVICES.length} Cleaning Services | CCS of Chicago`,
     description:
         'Industrial, commercial, warehouse, manufacturing, medical, school, gym, carpet, tile and grout, window, ' +
-        'green, post-construction, spring and scheduled cleaning across Chicago and the western suburbs.',
+        'green, post-construction, spring and scheduled cleaning serving Northern Illinois.',
     schema: graph([
         localBusiness(),
         breadcrumbs([
@@ -327,7 +327,7 @@ SERVICES.forEach((s, idx) => {
     pages.push({
         path: '/services/' + s.slug + '.html',
         depth: 1,
-        title: `${s.title} in Chicago & the Western Suburbs | CCS of Chicago`,
+        title: `${s.title} Serving Northern Illinois | CCS of Chicago`,
         description: `${s.short} Serving Chicago, Naperville, Oak Brook, Downers Grove, Elmhurst and Schaumburg. Free site walk and fixed price per visit.`,
         schema: graph([
             localBusiness(),
@@ -450,7 +450,7 @@ pages.push({
     title: 'About | Commercial Cleaning Systems of Chicago',
     description:
         'How we run commercial cleaning as a system — written scopes, assigned supervised crews, post-visit ' +
-        'inspections and green cleaning as standard across Chicago and the western suburbs.',
+        'inspections and green cleaning as standard across Northern Illinois.',
     schema: graph([
         localBusiness(),
         breadcrumbs([
@@ -539,7 +539,7 @@ ${ctaBand(depth)}`
 /* ----- Service areas index ---------------------------------------------- */
 pages.push({
     path: '/service-areas.html',
-    title: 'Service Areas | Commercial Cleaning in Chicago & the Western Suburbs',
+    title: 'Service Areas | Commercial Cleaning Serving Northern Illinois',
     description:
         'Commercial and industrial cleaning in Chicago, Naperville, Oak Brook, Downers Grove, Elmhurst and ' +
         'Schaumburg. Scheduled routes across the city and the western suburbs.',
@@ -946,7 +946,7 @@ fs.writeFileSync(
         {
             name: BUSINESS.name,
             short_name: BUSINESS.shortName,
-            description: 'Commercial and industrial cleaning across Chicago and the western suburbs.',
+            description: 'Commercial and industrial cleaning serving Northern Illinois.',
             start_url: '/',
             display: 'standalone',
             background_color: '#ffffff',

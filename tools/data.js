@@ -526,7 +526,7 @@ const TESTIMONIALS = [];
 const FAQS = [
     {
         q: 'What areas do you cover?',
-        a: 'Chicago and the western suburbs — Naperville, Oak Brook, Downers Grove, Elmhurst and Schaumburg, plus the towns around them. If you are just outside that, call anyway; routes flex more often than people expect.'
+        a: 'We serve Northern Illinois, with scheduled routes through Chicago, Naperville, Oak Brook, Downers Grove, Elmhurst and Schaumburg, plus surrounding towns. If your location is not listed, call anyway; routes flex more often than people expect.'
     },
     {
         q: 'Do you only work with businesses?',

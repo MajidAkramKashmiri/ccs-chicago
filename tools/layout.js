@@ -324,13 +324,6 @@ function footer(depth) {
                 <img src="${rel('/assets/img/footer/chicago-skyline-1600.jpg', depth)}" alt="" width="1600" height="901" loading="lazy" decoding="async">
             </picture>
             <div class="footer-brand">
-                <a class="brand brand--footer" href="${rel('/index.html', depth)}">
-                    <img src="${rel('/assets/img/brand/logo-mono.svg', depth)}" alt="" width="48" height="48" loading="lazy">
-                    <span class="brand__text">
-                        <span class="brand__name">Commercial Cleaning Systems</span>
-                        <span class="brand__tag">of Chicago</span>
-                    </span>
-                </a>
                 <p>Commercial, industrial and institutional cleaning serving Northern Illinois.
                 Family-owned, locally operated and serving commercial facilities since 2011.</p>
                 <div class="footer-contact">

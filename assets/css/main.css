@@ -2083,6 +2083,7 @@ a.topbar__item:hover { color: #fff; }
 .footer-col a { color: rgba(255, 255, 255, .68); text-decoration: none; font-size: .86rem; }
 .footer-col a:hover { color: var(--blue-300); }
 .footer-col .footer-all { display:inline-flex; align-items:center; gap:.4rem; color:var(--blue-300); font-weight:700; margin-top:.35rem; }
+.footer-brand + .footer-col + .footer-col { margin-left:clamp(.5rem,1.2vw,1.25rem); }
 .footer-all svg { width:15px; height:15px; }
 .footer-service-list li:not(:last-child) { border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:.55rem; }
 .footer-service-list li:not(:last-child) a { display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
@@ -2140,6 +2141,7 @@ a.topbar__item:hover { color: #fff; }
     .footer-hours { border:0; padding:0; }
     .footer-legal { justify-content:flex-start; }
     .footer-brand { padding-bottom:7rem; }
+    .footer-brand + .footer-col + .footer-col { margin-left:0; }
     .footer-skyline { left:-2.5rem; width:135%; max-width:620px; opacity:.42; }
 }
 

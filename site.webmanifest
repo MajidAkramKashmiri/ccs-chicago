@@ -1,0 +1,26 @@
+{
+  "name": "Commercial Cleaning Systems of Chicago",
+  "short_name": "CCS of Chicago",
+  "description": "Commercial and industrial cleaning across Chicago and the western suburbs.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0B2545",
+  "icons": [
+    {
+      "src": "/assets/img/brand/favicon-64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/brand/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/brand/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

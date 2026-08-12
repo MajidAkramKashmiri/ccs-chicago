@@ -1,0 +1,133 @@
+{
+  "_note": "All CC0 (public domain): commercial use and modification permitted, no attribution required.",
+  "photos": {
+    "hero": {
+      "file": "assets/img/work/hero.jpg",
+      "title": "Glass Wall",
+      "license": "cc0",
+      "source": "StockSnap via Openverse",
+      "original_url": "https://cdn.stocksnap.io/img-thumbs/960w/GID9EW0L7Z.jpg",
+      "served_size": "960px wide (native)"
+    },
+    "industrial-cleaning": {
+      "file": "assets/img/work/industrial-cleaning.jpg",
+      "title": "Industrial Pipes",
+      "license": "cc0",
+      "source": "StockSnap via Openverse",
+      "original_url": "https://cdn.stocksnap.io/img-thumbs/960w/C605E19108.jpg",
+      "served_size": "960px wide (native)"
+    },
+    "commercial-cleaning": {
+      "file": "assets/img/work/commercial-cleaning.jpg",
+      "title": "Sunlight Couch",
+      "license": "cc0",
+      "source": "StockSnap via Openverse",
+      "original_url": "https://cdn.stocksnap.io/img-thumbs/960w/NB6ISAF275.jpg",
+      "served_size": "960px wide (native)"
+    },
+    "carpet-cleaning": {
+      "file": "assets/img/work/carpet-cleaning.jpg",
+      "title": "Beauty Salon",
+      "license": "cc0",
+      "source": "StockSnap via Openverse",
+      "original_url": "https://cdn.stocksnap.io/img-thumbs/960w/0AA03E91E8.jpg",
+      "served_size": "960px wide (native)"
+    },
+    "commercial-window-cleaning": {
+      "file": "assets/img/work/commercial-window-cleaning.jpg",
+      "title": "Building Perspective",
+      "license": "cc0",
+      "source": "StockSnap via Openverse",
+      "original_url": "https://cdn.stocksnap.io/img-thumbs/960w/HZT7MU3I7S.jpg",
+      "served_size": "960px wide (native)"
+    },
+    "green-cleaning": {
+      "file": "assets/img/work/green-cleaning.jpg",
+      "title": "Banana Tree",
+      "license": "cc0",
+      "source": "StockSnap via Openverse",
+      "original_url": "https://cdn.stocksnap.io/img-thumbs/960w/WO21V5NTPY.jpg",
+      "served_size": "960px wide (native)"
+    },
+    "gym-cleaning": {
+      "file": "assets/img/work/gym-cleaning.jpg",
+      "title": "Gym Interior",
+      "license": "cc0",
+      "source": "StockSnap via Openverse",
+      "original_url": "https://cdn.stocksnap.io/img-thumbs/960w/LNCLN1NE6K.jpg",
+      "served_size": "960px wide (native)"
+    },
+    "medical-office-cleaning": {
+      "file": "assets/img/work/medical-office-cleaning.jpg",
+      "title": "Chair Dentist",
+      "license": "cc0",
+      "source": "StockSnap via Openverse",
+      "original_url": "https://cdn.stocksnap.io/img-thumbs/960w/N79O15BH30.jpg",
+      "served_size": "960px wide (native)"
+    },
+    "office-building-cleaning": {
+      "file": "assets/img/work/office-building-cleaning.jpg",
+      "title": "Buildings Architecture",
+      "license": "cc0",
+      "source": "StockSnap via Openverse",
+      "original_url": "https://cdn.stocksnap.io/img-thumbs/960w/GW653JPGTX.jpg",
+      "served_size": "960px wide (native)"
+    },
+    "post-construction-cleaning": {
+      "file": "assets/img/work/post-construction-cleaning.jpg",
+      "title": "Construction Renovation",
+      "license": "cc0",
+      "source": "StockSnap via Openverse",
+      "original_url": "https://cdn.stocksnap.io/img-thumbs/960w/MF4PFAS13H.jpg",
+      "served_size": "960px wide (native)"
+    },
+    "scheduled-cleaning-services": {
+      "file": "assets/img/work/scheduled-cleaning-services.jpg",
+      "title": "Architecture Buildings",
+      "license": "cc0",
+      "source": "StockSnap via Openverse",
+      "original_url": "https://cdn.stocksnap.io/img-thumbs/960w/ABQ2P11LPW.jpg",
+      "served_size": "960px wide (native)"
+    },
+    "school-cleaning": {
+      "file": "assets/img/work/school-cleaning.jpg",
+      "title": "School Books",
+      "license": "cc0",
+      "source": "StockSnap via Openverse",
+      "original_url": "https://cdn.stocksnap.io/img-thumbs/960w/S059QDGBOG.jpg",
+      "served_size": "960px wide (native)"
+    },
+    "spring-cleaning": {
+      "file": "assets/img/work/spring-cleaning.jpg",
+      "title": "Flower Vase",
+      "license": "cc0",
+      "source": "StockSnap via Openverse",
+      "original_url": "https://cdn.stocksnap.io/img-thumbs/960w/LWSJBWN8GG.jpg",
+      "served_size": "960px wide (native)"
+    },
+    "tile-and-grout-cleaning": {
+      "file": "assets/img/work/tile-and-grout-cleaning.jpg",
+      "title": "Bathroom Sink",
+      "license": "cc0",
+      "source": "StockSnap via Openverse",
+      "original_url": "https://cdn.stocksnap.io/img-thumbs/960w/D3901L7G93.jpg",
+      "served_size": "960px wide (native)"
+    },
+    "warehouse-cleaning": {
+      "file": "assets/img/work/warehouse-cleaning.jpg",
+      "title": "Container Van",
+      "license": "cc0",
+      "source": "StockSnap via Openverse",
+      "original_url": "https://cdn.stocksnap.io/img-thumbs/960w/RIG6ID482D.jpg",
+      "served_size": "960px wide (native)"
+    },
+    "manufacturing-cleaning": {
+      "file": "assets/img/work/manufacturing-cleaning.jpg",
+      "title": "Steel Industry",
+      "license": "cc0",
+      "source": "StockSnap via Openverse",
+      "original_url": "https://cdn.stocksnap.io/img-thumbs/960w/1PR1SGKS69.jpg",
+      "served_size": "960px wide (native)"
+    }
+  }
+}

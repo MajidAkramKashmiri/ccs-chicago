@@ -136,6 +136,82 @@
         }
     });
 
+    /* ----- rotating headline noun -----------------------------------------
+       Cycles "office towers / warehouses / plants / …" in the hero. The first
+       word is already in the markup, so with JS off the headline still reads
+       as a finished sentence.
+       --------------------------------------------------------------------- */
+    var rotor = document.querySelector('[data-rotate]');
+
+    if (rotor && !reduceMotion) {
+        var words = [];
+        try {
+            words = JSON.parse(rotor.getAttribute('data-rotate')) || [];
+        } catch (err) {
+            words = [];
+        }
+
+        if (words.length > 1) {
+            // Reserve the width of the longest word so the line never jumps.
+            var measure = document.createElement('span');
+            measure.className = 'hero__rot-word';
+            measure.style.cssText = 'position:absolute;visibility:hidden;opacity:0';
+            rotor.appendChild(measure);
+            var widest = 0;
+            words.forEach(function (w) {
+                measure.textContent = w;
+                widest = Math.max(widest, measure.getBoundingClientRect().width);
+            });
+            rotor.removeChild(measure);
+            if (widest) {
+                rotor.style.minWidth = Math.ceil(widest) + 'px';
+            }
+
+            var current = rotor.querySelector('.hero__rot-word');
+            var at = 0;
+            var rotorTimer = null;
+
+            var advance = function () {
+                at = (at + 1) % words.length;
+
+                var next = document.createElement('span');
+                next.className = 'hero__rot-word';
+                next.textContent = words[at];
+                rotor.appendChild(next);
+
+                // Force a frame so the entry transition actually runs.
+                void next.offsetWidth;
+                next.classList.add('is-in');
+
+                var leaving = current;
+                leaving.classList.remove('is-in');
+                leaving.classList.add('is-out');
+                window.setTimeout(function () {
+                    if (leaving.parentNode) {
+                        leaving.parentNode.removeChild(leaving);
+                    }
+                }, 600);
+
+                current = next;
+            };
+
+            var startRotor = function () {
+                window.clearInterval(rotorTimer);
+                rotorTimer = window.setInterval(advance, 2200);
+            };
+
+            document.addEventListener('visibilitychange', function () {
+                if (document.hidden) {
+                    window.clearInterval(rotorTimer);
+                } else {
+                    startRotor();
+                }
+            });
+
+            startRotor();
+        }
+    }
+
     /* ----- FAQ accordion --------------------------------------------------- */
     Array.prototype.forEach.call(document.querySelectorAll('.faq__q'), function (btn) {
         btn.addEventListener('click', function () {

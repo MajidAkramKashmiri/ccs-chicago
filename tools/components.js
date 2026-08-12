@@ -43,31 +43,46 @@ function photo(name, alt, { sizes, cls = '', eager = false, w = 960, h = 640 } =
    Hero — split layout, white ground, photo panel on the right
    -------------------------------------------------------------------------- */
 function hero(depth) {
-    const bullets = [
-        'Written scope, inspected after every visit',
-        'Nights and weekends at no premium',
-        'Insured, background-checked, badged crews'
+    const chips = [
+        'Written scope, inspected every visit',
+        'Nights & weekends, no premium',
+        'Insured & background-checked'
     ];
+
+    // The rotating noun is what makes the hero feel like it is addressing the
+    // reader rather than describing itself. The first word is rendered in the
+    // markup so the headline is a complete sentence without JavaScript.
+    const rotate = ['office towers', 'warehouses', 'plants', 'clinics', 'schools', 'gyms'];
 
     return `
 <section class="hero">
     <span class="fx fx--hero" aria-hidden="true"><i></i><i></i><i></i></span>
     <span class="grid-fx" aria-hidden="true"></span>
+    <span class="hero__beam" aria-hidden="true"></span>
     <div class="wrap hero__wrap">
         <div class="hero__text">
             <p class="hero__kicker">${ICONS.pin} Chicago &amp; the western suburbs</p>
-            <h1>Commercial cleaning<br><em>built as a system</em>, not a visit.</h1>
-            <p class="hero__body">Fifteen specialist cleaning programs under one contract — offices, plants,
-            warehouses, medical practices and schools across Chicago and the western suburbs. Every job runs to a
-            written scope and is inspected against it.</p>
-            <ul class="hero__list">
-                ${bullets.map((b) => `<li>${ICONS.check}<span>${esc(b)}</span></li>`).join('\n                ')}
+
+            <h1 class="hero__title">
+                <span class="hero__line">We keep Chicago's</span>
+                <span class="hero__rot" data-rotate='${JSON.stringify(rotate)}'>
+                    <span class="hero__rot-word is-in">${esc(rotate[0])}</span>
+                </span>
+                <span class="hero__line">running spotless.</span>
+            </h1>
+
+            <p class="hero__body">Fifteen specialist cleaning programs under one contract, across Chicago and the
+            western suburbs. Every job runs to a written scope — and a supervisor inspects against it.</p>
+
+            <ul class="hero__chips">
+                ${chips.map((c) => `<li>${ICONS.check}<span>${esc(c)}</span></li>`).join('\n                ')}
             </ul>
+
             <div class="btn-row">
-                <a class="btn btn--lg btn--primary" href="${rel('/contact.html', depth)}" data-cta="hero-quote">
+                <a class="btn btn--lg btn--white btn--glow" href="${rel('/contact.html', depth)}" data-cta="hero-quote">
                     Get a free quote ${ICONS.arrow}
                 </a>
-                <a class="btn btn--lg btn--outline" href="${BUSINESS.phoneHref}" data-cta="hero-call">
+                <a class="btn btn--lg btn--outline-white btn--ring" href="${BUSINESS.phoneHref}" data-cta="hero-call">
                     ${ICONS.phone} ${esc(BUSINESS.phone)}
                 </a>
             </div>
@@ -75,22 +90,27 @@ function hero(depth) {
 
         <div class="hero__media">
             <div class="hero__shot">
-                ${photo('hero', 'A glass-fronted Chicago office building catching the daylight', {
+                ${photo('hero', 'A bright, freshly cleaned open-plan office with plants and breakout seating', {
                     sizes: '(max-width: 980px) 92vw, 46vw',
                     cls: 'hero__img',
                     eager: true
                 }, depth)}
                 <span class="hero__sheen" aria-hidden="true"></span>
             </div>
-            <div class="hero__badge">
-                <span class="hero__badge-icon">${ICONS.shield}</span>
-                <span>
-                    <strong>${esc(BUSINESS.guarantee)}</strong>
-                    <span>Report it within 24 hours — the crew comes back, no charge.</span>
-                </span>
+
+            <div class="hero__float hero__float--a">
+                <span class="hero__float-icon">${ICONS.shield}</span>
+                <span><strong>Redone free</strong><span>if anything is missed</span></span>
+            </div>
+
+            <div class="hero__float hero__float--b">
+                <span class="hero__float-num">7<em>/7</em></span>
+                <span><strong>Scheduling</strong><span>nights &amp; weekends</span></span>
             </div>
         </div>
     </div>
+
+    <span class="hero__curve" aria-hidden="true"></span>
 </section>`;
 }
 

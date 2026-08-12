@@ -55,18 +55,20 @@ function hero(depth) {
         'Insured & background-checked'
     ];
 
-    const base = rel('/assets/img/redesign/home-hero', depth);
+    const base = rel('/assets/img/hero/hero-bg', depth);
 
     return `
 <section class="hero" data-hero>
     <div class="hero__bg" data-parallax>
         <img src="${base}.jpg"
-             srcset="${base}-900.jpg 900w, ${base}.jpg 1800w"
+             srcset="${base}-800.jpg 800w, ${base}-1200.jpg 1200w, ${base}.jpg 1659w"
              sizes="100vw" alt="" aria-hidden="true"
-             width="1800" height="1077" fetchpriority="high" decoding="async">
+             width="1659" height="948" fetchpriority="high" decoding="async">
     </div>
 
     <span class="hero__scrim" aria-hidden="true"></span>
+    <span class="hero__aurora" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="hero__energy" aria-hidden="true"><i></i><i></i><i></i></span>
     <span class="hero__sweep" aria-hidden="true"></span>
 
     <div class="wrap hero__wrap">

@@ -95,6 +95,20 @@ function hero(depth) {
 }
 
 /* --------------------------------------------------------------------------
+   Sector ticker
+   Decorative repetition of the sectors list, so it is hidden from assistive
+   tech — the real list is a proper section further down the page. The track is
+   duplicated because the loop translates by exactly -50%.
+   -------------------------------------------------------------------------- */
+function marquee() {
+    const items = SECTORS.map((s) => `<span>${ICONS[s.icon]}${esc(s.name)}</span>`).join('');
+    return `
+<div class="marquee" aria-hidden="true">
+    <div class="marquee__track">${items}${items}</div>
+</div>`;
+}
+
+/* --------------------------------------------------------------------------
    Stat band — numbers count up on scroll
    -------------------------------------------------------------------------- */
 function statBand() {
@@ -432,6 +446,7 @@ module.exports = {
     heading,
     photo,
     hero,
+    marquee,
     statBand,
     serviceCards,
     serviceIndex,

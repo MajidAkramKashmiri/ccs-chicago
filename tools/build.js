@@ -179,6 +179,7 @@ pages.push({
     ]),
     body: (depth) => `
 ${C.hero(depth)}
+${C.marquee()}
 ${C.statBand()}
 
 <section class="section">

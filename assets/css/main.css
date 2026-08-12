@@ -2020,7 +2020,7 @@ a.topbar__item:hover { color: #fff; }
         radial-gradient(35% 65% at 92% 28%,rgba(20,92,220,.12),transparent 75%),
         #050b1e;
     color: rgba(255, 255, 255, .68);
-    padding: clamp(2.8rem, 5vw, 4rem) 0 1.4rem;
+    padding: clamp(1.5rem, 2.4vw, 2.25rem) 0 1.4rem;
     font-size: .9rem;
 }
 .site-footer::before { content:''; position:absolute; inset:0; pointer-events:none; opacity:.13; background-image:linear-gradient(rgba(92,152,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(92,152,255,.08) 1px,transparent 1px); background-size:72px 72px; mask-image:linear-gradient(to bottom,#000,transparent 72%); }

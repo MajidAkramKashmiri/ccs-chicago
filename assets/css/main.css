@@ -884,14 +884,62 @@ a.topbar__item:hover { color: #fff; }
     transform: rotate(1.2deg);
 }
 
-.hero__img {
-    width: 100%; height: 100%; object-fit: cover;
-    animation: kenburns 30s ease-in-out infinite alternate;
+/* --------------------------------------------------------------------------
+   Hero scene animation
+
+   One shared 11s timeline. The gondola rides down, the clip rectangle that
+   reveals the clean facade rides with it, then the whole clean layer fades out
+   so the loop restarts invisibly rather than snapping back to grimy glass.
+   -------------------------------------------------------------------------- */
+.scene { position: absolute; inset: 0; }
+.scene svg { width: 100%; height: 100%; display: block; }
+
+.scene__rig {
+    animation: rig 11s cubic-bezier(.45, 0, .3, 1) infinite;
+    will-change: transform;
 }
 
-@keyframes kenburns {
-    from { transform: scale(1.02); }
-    to   { transform: scale(1.11) translate3d(-1.2%, -1%, 0); }
+.scene__wipe {
+    animation: wipe 11s cubic-bezier(.45, 0, .3, 1) infinite;
+    will-change: transform;
+}
+
+.scene__clean { animation: cleanFade 11s linear infinite; }
+
+/* Travel is tuned to the viewBox: the rig starts high enough that the
+   operator's head clears the top crop, and the wipe ends past the last pane
+   row (which bottoms out at y=480) so no grimy strip is left behind. */
+@keyframes rig {
+    0%, 6%    { transform: translateY(-39px); }
+    72%, 88%  { transform: translateY(352px); }
+    100%      { transform: translateY(-39px); }
+}
+
+@keyframes wipe {
+    0%, 6%    { transform: translateY(0); }
+    72%, 88%  { transform: translateY(470px); }
+    100%      { transform: translateY(470px); }
+}
+
+@keyframes cleanFade {
+    0%, 88%   { opacity: 1; }
+    96%, 100% { opacity: 0; }
+}
+
+/* Sparkles twinkle only once the squeegee has gone past */
+.scene__spark {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: spark 11s ease-in-out infinite;
+}
+
+@keyframes spark {
+    0%, 24%  { opacity: 0; transform: scale(.3) rotate(0deg); }
+    34%      { opacity: .95; transform: scale(1) rotate(35deg); }
+    46%      { opacity: .25; transform: scale(.7) rotate(60deg); }
+    58%      { opacity: .9; transform: scale(1) rotate(90deg); }
+    76%, 100% { opacity: 0; transform: scale(.4) rotate(120deg); }
 }
 
 .hero__sheen {
@@ -1848,7 +1896,10 @@ a.topbar__item:hover { color: #fff; }
 
     /* Keep the light and grid as static colour, just stop them moving. */
     .hero__sheen, .hero__beam { display: none; }
-    .fx i, .grid-fx, .hero__img, .marquee__track, .hero__float, .btn--ring::after { animation: none !important; }
+    .fx i, .grid-fx, .marquee__track, .hero__float, .btn--ring::after,
+    .scene__rig, .scene__wipe, .scene__clean, .scene__spark { animation: none !important; }
+    /* Motion off: show the tower already cleaned rather than mid-wipe. */
+    .scene__wipe { transform: translateY(470px); }
     .hero__rot-word { transition: none !important; }
 }
 

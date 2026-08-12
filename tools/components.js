@@ -57,7 +57,6 @@ function hero(depth) {
     return `
 <section class="hero">
     <span class="fx fx--hero" aria-hidden="true"><i></i><i></i><i></i></span>
-    <span class="grid-fx" aria-hidden="true"></span>
     <span class="hero__beam" aria-hidden="true"></span>
     <div class="wrap hero__wrap">
         <div class="hero__text">
@@ -90,11 +89,7 @@ function hero(depth) {
 
         <div class="hero__media">
             <div class="hero__shot">
-                ${photo('hero', 'A bright, freshly cleaned open-plan office with plants and breakout seating', {
-                    sizes: '(max-width: 980px) 92vw, 46vw',
-                    cls: 'hero__img',
-                    eager: true
-                }, depth)}
+                ${heroScene()}
                 <span class="hero__sheen" aria-hidden="true"></span>
             </div>
 
@@ -112,6 +107,139 @@ function hero(depth) {
 
     <span class="hero__curve" aria-hidden="true"></span>
 </section>`;
+}
+
+/* --------------------------------------------------------------------------
+   Hero scene — a building actually being cleaned
+
+   Drawn rather than photographed. Two copies of the same facade sit on top of
+   each other: a grimy one, and a bright one revealed through a clip rectangle
+   that travels down in step with the gondola. So the glass turns clear exactly
+   where the squeegee has passed.
+
+   ~14KB of markup, sharp at any size, no licensing, and it depicts the actual
+   service — which no stock photograph in a free library does.
+   -------------------------------------------------------------------------- */
+function heroScene() {
+    const COLS = 6;
+    const ROWS = 8;
+    const X0 = 78;
+    const Y0 = 58;
+    const PW = 68;
+    const PH = 44;
+    const GAP = 10;
+
+    // Same geometry drawn twice; only the fill differs.
+    const panes = (fill, extra = '') => {
+        let out = '';
+        for (let r = 0; r < ROWS; r += 1) {
+            for (let c = 0; c < COLS; c += 1) {
+                const x = X0 + c * (PW + GAP);
+                const y = Y0 + r * (PH + GAP);
+                out += `<rect x="${x}" y="${y}" width="${PW}" height="${PH}" rx="3" fill="${fill}"${extra}/>`;
+            }
+        }
+        return out;
+    };
+
+    // Diagonal highlight streaks, only on the cleaned glass
+    const shine = () => {
+        let out = '';
+        for (let r = 0; r < ROWS; r += 1) {
+            for (let c = 0; c < COLS; c += 1) {
+                const x = X0 + c * (PW + GAP);
+                const y = Y0 + r * (PH + GAP);
+                out += `<path d="M${x + 8} ${y + PH - 6} L${x + 26} ${y + 6}" stroke="#fff" stroke-width="5"
+                        stroke-linecap="round" opacity=".55"/>`;
+                out += `<path d="M${x + 30} ${y + PH - 6} L${x + 40} ${y + 14}" stroke="#fff" stroke-width="3"
+                        stroke-linecap="round" opacity=".35"/>`;
+            }
+        }
+        return out;
+    };
+
+    const sparkles = [
+        [150, 150, 0], [300, 210, 0.4], [470, 170, 0.8],
+        [220, 320, 1.2], [420, 360, 1.6], [120, 260, 2.0]
+    ]
+        .map(
+            ([x, y, d]) =>
+                `<path class="scene__spark" style="animation-delay:${d}s"
+                   d="M${x} ${y - 9} L${x + 2.6} ${y - 2.6} L${x + 9} ${y} L${x + 2.6} ${y + 2.6} L${x} ${y + 9}
+                      L${x - 2.6} ${y + 2.6} L${x - 9} ${y} L${x - 2.6} ${y - 2.6} Z" fill="#fff"/>`
+        )
+        .join('');
+
+    return `
+<div class="scene" role="img" aria-label="Illustration: a window-cleaning gondola descending a glass tower, leaving gleaming glass behind it">
+<svg viewBox="48 28 524 442" preserveAspectRatio="xMidYMid slice" focusable="false">
+    <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#DCEBFF"/>
+            <stop offset="1" stop-color="#F7FBFF"/>
+        </linearGradient>
+        <linearGradient id="cleanGlass" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#7DD3FC"/>
+            <stop offset="0.5" stop-color="#38BDF8"/>
+            <stop offset="1" stop-color="#2563EB"/>
+        </linearGradient>
+        <linearGradient id="tower" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#12325E"/>
+            <stop offset="1" stop-color="#0A2140"/>
+        </linearGradient>
+
+        <!-- Travels down with the gondola, revealing the clean facade -->
+        <clipPath id="wipe" clipPathUnits="userSpaceOnUse">
+            <rect class="scene__wipe" x="0" y="-470" width="620" height="470"/>
+        </clipPath>
+    </defs>
+
+    <rect width="620" height="470" fill="url(#sky)"/>
+
+    <!-- Neighbouring towers, for depth -->
+    <g opacity=".5">
+        <rect x="0" y="150" width="58" height="320" fill="#C3D9F2"/>
+        <rect x="566" y="110" width="54" height="360" fill="#C3D9F2"/>
+        <rect x="14" y="196" width="12" height="12" fill="#fff" opacity=".7"/>
+        <rect x="34" y="240" width="12" height="12" fill="#fff" opacity=".7"/>
+        <rect x="584" y="170" width="12" height="12" fill="#fff" opacity=".7"/>
+    </g>
+
+    <!-- The tower -->
+    <rect x="62" y="38" width="496" height="432" rx="6" fill="url(#tower)"/>
+
+    <!-- Grimy glass -->
+    <g>${panes('#5C7391', ' opacity=".9"')}</g>
+    <g opacity=".22">${panes('#2A3F5C')}</g>
+
+    <!-- Cleaned glass, revealed behind the squeegee -->
+    <g class="scene__clean" clip-path="url(#wipe)">
+        <g>${panes('url(#cleanGlass)')}</g>
+        <g>${shine()}</g>
+        <g class="scene__sparks">${sparkles}</g>
+    </g>
+
+    <!-- Gondola: cables, cradle, squeegee, operator -->
+    <g class="scene__rig">
+        <path d="M196 -470 V 96" stroke="#0A2140" stroke-width="3"/>
+        <path d="M424 -470 V 96" stroke="#0A2140" stroke-width="3"/>
+
+        <!-- squeegee blade and the water it leaves -->
+        <rect x="150" y="86" width="320" height="7" rx="3.5" fill="#E2EEFE"/>
+        <rect x="150" y="93" width="320" height="4" rx="2" fill="#38BDF8" opacity=".85"/>
+
+        <rect x="168" y="98" width="284" height="52" rx="8" fill="#0D57C0"/>
+        <rect x="168" y="98" width="284" height="52" rx="8" fill="none" stroke="#2E82F0" stroke-width="2"/>
+        <rect x="182" y="112" width="46" height="26" rx="4" fill="#9CC6FB" opacity=".55"/>
+
+        <!-- operator -->
+        <circle cx="300" cy="80" r="13" fill="#F5C9A8"/>
+        <path d="M287 74a13 13 0 0 1 26 0z" fill="#0B2545"/>
+        <path d="M282 98h36a10 10 0 0 1 10 10v14h-56v-14a10 10 0 0 1 10-10z" fill="#FFD447"/>
+        <path d="M318 104l26-10" stroke="#F5C9A8" stroke-width="7" stroke-linecap="round"/>
+    </g>
+</svg>
+</div>`;
 }
 
 /* --------------------------------------------------------------------------
@@ -466,6 +594,7 @@ module.exports = {
     heading,
     photo,
     hero,
+    heroScene,
     marquee,
     statBand,
     serviceCards,

@@ -89,6 +89,7 @@ const ICONS = {
     close: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>`,
     facebook: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9V7.2c0-.8.2-1.2 1.4-1.2H17V3h-2.6C11.3 3 10.2 4.6 10.2 7v2H8v3h2.2v9H14v-9h2.6l.4-3z"/></svg>`,
     linkedin: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.9 21H3.5V9h3.4zM5.2 7.5a2 2 0 1 1 0-4 2 2 0 0 1 0 4zM21 21h-3.4v-6c0-1.6-.6-2.5-1.9-2.5-1 0-1.6.7-1.8 1.4-.1.2-.1.6-.1.9V21H10.4s.1-10.4 0-11.5h3.4v1.7c.4-.7 1.3-1.8 3.2-1.8 2.3 0 4 1.5 4 4.8z"/></svg>`,
+    instagram: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>`,
     google: `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.4z"/><path d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.7-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z"/><path d="M6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3.1a10 10 0 0 0 0 9.2z"/><path d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.8-2.8A10 10 0 0 0 3.1 7.4L6.4 10c.8-2.4 3-4.1 5.6-4.1z"/></svg>`
 };
 
@@ -292,15 +293,15 @@ function ctaBand(depth, options = {}) {
    Footer
    -------------------------------------------------------------------------- */
 function footer(depth) {
-    const half = Math.ceil(SERVICES.length / 2);
     const col = (list) =>
         list
             .map((s) => `<li><a href="${rel('/services/' + s.slug + '.html', depth)}">${esc(s.title)}</a></li>`)
             .join('\n                    ');
 
-    const cityLinks = CITIES.map(
-        (c) => `<li><a href="${rel('/areas/' + c.slug + '.html', depth)}">Cleaning in ${esc(c.name)}</a></li>`
-    ).join('\n                    ');
+    const featuredServices = SERVICES.filter((s) => [
+        'commercial-cleaning', 'office-building-cleaning', 'industrial-cleaning',
+        'warehouse-cleaning', 'medical-office-cleaning', 'post-construction-cleaning'
+    ].includes(s.slug));
 
     const socials = Object.entries(BUSINESS.social)
         .filter(([, url]) => url)
@@ -327,36 +328,28 @@ function footer(depth) {
                     </span>
                 </a>
                 <p>Commercial, industrial and institutional cleaning serving Northern Illinois.
-                Insured, background-checked crews working to a written scope and inspected after every visit.</p>
-                <a class="footer-phone" href="${BUSINESS.phoneHref}">${ICONS.phone}<span>${esc(
-        BUSINESS.phone
-    )}</span></a>
+                Family-owned, locally operated and serving commercial facilities since 2011.</p>
+                <div class="footer-contact">
+                    <a class="footer-phone" href="${BUSINESS.phoneHref}">${ICONS.phone}<span>${esc(BUSINESS.phone)}</span></a>
+                    <a href="mailto:${esc(BUSINESS.email)}">${ICONS.mail}<span>${esc(BUSINESS.email)}</span></a>
+                    <a href="${esc(BUSINESS.social.google)}" target="_blank" rel="noopener noreferrer">${ICONS.pin}<span>${esc(BUSINESS.street)}<br>${esc(BUSINESS.postalCity)}, IL ${esc(BUSINESS.postalCode)}</span></a>
+                </div>
                 ${socials ? `<div class="socials">\n                    ${socials}\n                </div>` : ''}
             </div>
 
             <div class="footer-col">
-                <h4>Services</h4>
+                <h4>Popular services</h4>
                 <ul>
-                    ${col(SERVICES.slice(0, half))}
+                    ${col(featuredServices)}
+                    <li><a class="footer-all" href="${rel('/services.html', depth)}">View all ${SERVICES.length} services ${ICONS.arrow}</a></li>
                 </ul>
             </div>
 
             <div class="footer-col">
-                <h4>More services</h4>
-                <ul>
-                    ${col(SERVICES.slice(half))}
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Areas covered</h4>
-                <ul>
-                    ${cityLinks}
-                    <li><a href="${rel('/service-areas.html', depth)}">All areas</a></li>
-                </ul>
-                <h4 class="footer-col__second">Company</h4>
+                <h4>Explore</h4>
                 <ul>
                     <li><a href="${rel('/about.html', depth)}">About us</a></li>
+                    <li><a href="${rel('/service-areas.html', depth)}">Service areas</a></li>
                     <li><a href="${rel('/testimonials.html', depth)}">References &amp; standards</a></li>
                     <li><a href="${rel('/faq.html', depth)}">FAQ</a></li>
                     <li><a href="${rel('/contact.html', depth)}">Request a quote</a></li>
@@ -366,7 +359,7 @@ function footer(depth) {
 
         <div class="footer-bottom">
             <p>&copy; <span data-year>2026</span> ${esc(BUSINESS.name)}. All rights reserved.</p>
-            <p>${esc(BUSINESS.hours)} &middot; ${esc(BUSINESS.hoursNote)}</p>
+            <p>${esc(BUSINESS.hours)} &middot; ${esc(BUSINESS.hoursNote)} &middot; <a href="https://www.commercialcleaningsystemsofchicago.com/privacy-policy">Privacy</a></p>
         </div>
     </div>
 </footer>

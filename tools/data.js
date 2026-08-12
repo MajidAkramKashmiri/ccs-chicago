@@ -20,16 +20,20 @@ const BUSINESS = {
     smsHref: 'sms:+16302027343',
     phoneDigits: '+1-630-202-7343',
 
-    // TODO: replace with the real address before launch.
-    email: 'info@ccsofchicago.com',
+    // Verified against the company's previous public website.
+    email: 'mm.cleaninc@gmail.com',
     domain: 'https://ccsofchicago.com',
+
+    street: '6615 Grand Ave, Suite 221',
+    postalCity: 'Gurnee',
+    postalCode: '60031',
 
     country: 'US',
     region: 'IL',
     regionName: 'Illinois',
     city: 'Chicago',
-    hours: 'Mon–Fri, 7:00am – 6:00pm',
-    hoursNote: 'Nightly, overnight and weekend crews by contract',
+    hours: 'Mon–Fri, 8:00am – 9:00pm',
+    hoursNote: 'Saturday–Sunday by appointment',
     emergency: 'Emergency and same-day response available',
     guarantee: 'Inspected after every visit — anything missed is redone free',
 
@@ -37,8 +41,11 @@ const BUSINESS = {
     lat: 41.8781,
     lng: -87.6298,
 
-    // TODO: add real profile URLs, or leave blank to hide the icons.
-    social: { facebook: '', linkedin: '', google: '' }
+    social: {
+        facebook: 'https://facebook.com/CommercialCleaningSystemsOfChicagoLLC',
+        instagram: 'https://instagram.com/commcercialcleaningsystemschi/',
+        google: 'https://www.google.com/maps/place/Commercial%2BCleaning%2BSystems%2BOf%2BChicago%2C%2BLLC/data=!4m2!3m1!1s0x0:0xa61a4f61cdcda2cd'
+    }
 };
 
 /**

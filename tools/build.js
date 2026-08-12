@@ -46,8 +46,10 @@ function localBusiness(extra = {}) {
         currenciesAccepted: 'USD',
         address: {
             '@type': 'PostalAddress',
-            addressLocality: BUSINESS.city,
+            streetAddress: BUSINESS.street,
+            addressLocality: BUSINESS.postalCity,
             addressRegion: BUSINESS.region,
+            postalCode: BUSINESS.postalCode,
             addressCountry: BUSINESS.country
         },
         geo: { '@type': 'GeoCoordinates', latitude: BUSINESS.lat, longitude: BUSINESS.lng },

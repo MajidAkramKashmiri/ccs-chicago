@@ -179,7 +179,7 @@ function header(page, depth) {
     return `
 <div class="topbar">
     <div class="wrap">
-        <p class="topbar__item">${ICONS.pin}<span>Chicago &amp; the western suburbs</span></p>
+        <p class="topbar__item">${ICONS.pin}<span>Serving Northern Illinois</span></p>
         <p class="topbar__item topbar__item--hide">${ICONS.clock}<span>${esc(BUSINESS.hours)} &middot; ${esc(
         BUSINESS.hoursNote
     )}</span></p>
@@ -227,7 +227,7 @@ function header(page, depth) {
             </span>
 
             ${link('/about.html', 'About')}
-            ${link('/testimonials.html', 'Testimonials')}
+            ${link('/testimonials.html', 'References')}
             ${link('/faq.html', 'FAQ')}
             ${link('/contact.html', 'Contact')}
         </nav>
@@ -267,7 +267,6 @@ function ctaBand(depth, options = {}) {
     return `
 <section class="cta-band">
     <span class="fx" aria-hidden="true"><i></i><i></i><i></i></span>
-    <span class="grid-fx" aria-hidden="true"></span>
     <div class="wrap">
         <div class="cta-band__inner">
             <div data-reveal>
@@ -358,7 +357,7 @@ function footer(depth) {
                 <h4 class="footer-col__second">Company</h4>
                 <ul>
                     <li><a href="${rel('/about.html', depth)}">About us</a></li>
-                    <li><a href="${rel('/testimonials.html', depth)}">Testimonials</a></li>
+                    <li><a href="${rel('/testimonials.html', depth)}">References &amp; standards</a></li>
                     <li><a href="${rel('/faq.html', depth)}">FAQ</a></li>
                     <li><a href="${rel('/contact.html', depth)}">Request a quote</a></li>
                 </ul>

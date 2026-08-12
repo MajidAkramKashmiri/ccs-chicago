@@ -106,7 +106,6 @@ function pageHero({ eyebrow, title, lede, crumbs = [], depth = 0, media, mediaAl
     return `
 <section class="page-hero${media ? ' page-hero--media' : ''}">
     <span class="fx" aria-hidden="true"><i></i><i></i><i></i></span>
-    <span class="grid-fx" aria-hidden="true"></span>
     <div class="wrap">
         <div class="page-hero__inner">
             <div class="page-hero__text">
@@ -155,6 +154,27 @@ function guaranteeBlock(depth) {
 </section>`;
 }
 
+function serviceSignature(service) {
+    const signatures = {
+        'medical-office-cleaning': ['Zone-segregated equipment', 'High-touch sequence', 'Documented visit'],
+        'industrial-cleaning': ['Site induction', 'PPE and lockout rules', 'Shutdown scheduling'],
+        'manufacturing-cleaning': ['Line-side planning', 'Changeover windows', 'Audit-ready records'],
+        'warehouse-cleaning': ['Ride-on equipment', 'Dispatch-aware timing', 'Dock and rack detail'],
+        'office-building-cleaning': ['Multi-tenant reporting', 'Lobby and glass detail', 'Quiet evening crews'],
+        'gym-cleaning': ['High-touch equipment', 'Mirrors and mats', 'Locker-room routines'],
+        'school-cleaning': ['Term-time routines', 'Break-period deep cleans', 'Classroom-to-gym scope'],
+        'post-construction-cleaning': ['Rough clean', 'Final clean', 'Touch-up before handover'],
+        'commercial-window-cleaning': ['Interior and exterior', 'Frames and tracks', 'Access planned first'],
+        'carpet-cleaning': ['Method by fiber and use', 'Overnight drying plan', 'Spot and traffic-lane care'],
+        'tile-and-grout-cleaning': ['Deep scrub', 'Extraction', 'Seal where specified'],
+        'scheduled-cleaning-services': ['Frequency by task', 'Built around operating hours', 'Monthly review cycle']
+    };
+    const items = signatures[service.slug] || service.points.slice(0, 3).map((p) => p.split(' — ')[0]);
+    return `<section class="service-signature service-signature--${esc(service.group.toLowerCase().replace(/[^a-z]+/g, '-'))}">
+        <div class="wrap"><p>Program focus</p><ul>${items.map((item, i) => `<li><span>0${i + 1}</span><strong>${esc(item)}</strong></li>`).join('')}</ul></div>
+    </section>`;
+}
+
 /* --------------------------------------------------------------------------
    Pages
    -------------------------------------------------------------------------- */
@@ -180,102 +200,35 @@ pages.push({
     body: (depth) => `
 ${C.hero(depth)}
 ${C.trustStrip()}
-${C.statBand()}
 
 <section class="section">
     <div class="wrap">
-        <div class="split">
-            <div class="split__text">
-                <p class="eyebrow" data-reveal>${ICONS.sparkle} Who we are</p>
-                <h2 data-reveal>One contractor, fifteen programs, one invoice.</h2>
-                <p class="lede" data-reveal>Most facilities end up with a janitorial company, a floor company, a
-                window company and a carpet company — four schedules, four invoices and four people to chase when
-                something slips. We run all of it as one program.</p>
-                <p data-reveal>Everything starts with a site walk and a written scope: every task, every area, with a
-                frequency against it. That scope is what the crew works to and what a supervisor inspects against
-                after each visit. You get the inspection report, not just the invoice.</p>
-                <p data-reveal>Crews are assigned to your building rather than rotated through it, background-checked
-                and badged before they hold a key, and briefed on your access, security and safety rules. Green
-                cleaning products, microfibre and HEPA filtration are the default, not a paid upgrade.</p>
-                <div class="btn-row" data-reveal>
-                    <a class="btn btn--primary btn--lg" href="${rel('/services.html', depth)}">See all services ${
-        ICONS.arrow
-    }</a>
-                    <a class="btn btn--ghost btn--lg" href="${rel('/about.html', depth)}">About the company</a>
-                </div>
-            </div>
-            <div class="split__aside" data-reveal>
-                <div class="panel">
-                    <h3>${ICONS.clipboard} What a contract includes</h3>
-                    <ul class="ticks">
-                        ${[
-                            'Room-by-room written scope with frequencies',
-                            'Named crew and an on-site supervisor',
-                            'Post-visit inspection reports',
-                            'All equipment, machines and products',
-                            'Green cleaning products as standard',
-                            'Nights and weekends at no premium',
-                            'Certificates of insurance before you sign',
-                            '24-hour window to report anything missed'
-                        ]
-                            .map((t) => `<li>${ICONS.check}<span>${esc(t)}</span></li>`)
-                            .join('\n                        ')}
-                    </ul>
-                </div>
-            </div>
-        </div>
+        ${C.heading({ eyebrow: 'Find your program', title: 'Start with the facility. Add the specialist work.', lede: 'Fifteen programs, organized around how facilities teams actually buy cleaning.' })}
+        ${C.serviceExplorer(depth)}
     </div>
 </section>
 
 <section class="section section--tint">
     <div class="wrap">
-        ${C.heading({
-            eyebrow: 'What we clean',
-            title: 'Six programs most clients start with',
-            lede: 'Take one on its own, or bundle several into a single contract with one point of contact.'
-        })}
-        ${C.serviceCards(depth, { limit: 6 })}
-        <div class="section-foot" data-reveal>
-            <a class="btn btn--primary btn--lg" href="${rel('/services.html', depth)}">All ${
-        SERVICES.length
-    } services ${ICONS.arrow}</a>
-        </div>
+        ${C.operatingSystem(depth)}
     </div>
 </section>
 
 <section class="section">
     <div class="wrap">
-        ${C.heading({
-            eyebrow: 'Who we clean for',
-            title: 'Buildings we know how to run',
-            lede: 'Different buildings fail in different ways. These are the ones we are set up for.'
-        })}
-        ${C.sectors()}
+        ${C.visualProof(depth)}
     </div>
 </section>
 
 <section class="section section--navy">
-    <span class="fx" aria-hidden="true"><i></i><i></i><i></i></span>
-    <span class="grid-fx" aria-hidden="true"></span>
     <div class="wrap">
         ${C.heading({
-            eyebrow: 'Why facilities managers stay',
-            title: 'Six things that are rarely all true at once',
-            lede: 'None of this is difficult. It is just uncommon to find it in one contractor.',
+            eyebrow: 'The operating standard',
+            title: 'Built for facilities teams, not domestic housekeeping',
+            lede: 'Clear scope, controlled access, consistent staffing and work that fits around the building.',
             light: true
         })}
         ${C.reasons()}
-    </div>
-</section>
-
-<section class="section">
-    <div class="wrap">
-        ${C.heading({
-            eyebrow: 'How it works',
-            title: 'From first call to a settled routine',
-            lede: 'A site walk within a couple of working days, a written scope about two days after that.'
-        })}
-        ${C.process()}
     </div>
 </section>
 
@@ -284,7 +237,7 @@ ${C.statBand()}
         ${C.heading({
             eyebrow: 'Where we work',
             title: 'Chicago and the western suburbs',
-            lede: 'Scheduled routes across the city and the I-88 and I-290 corridors, so adding a site rarely changes the price.'
+            lede: 'Scheduled routes across the city and the I-88 and I-290 corridors.'
         })}
         ${C.areaGrid(depth)}
     </div>
@@ -295,9 +248,9 @@ ${C.statBand()}
         ${C.heading({
             eyebrow: 'Questions',
             title: 'What buyers ask before they switch',
-            lede: 'Pricing, insurance, contracts and out-of-hours access — answered straight.'
+            lede: 'Pricing, insurance, contracts and out-of-hours access — answered clearly.'
         })}
-        <div class="faq-wrap">${C.faqList(6)}</div>
+        <div class="faq-wrap">${C.faqList(5)}</div>
         <div class="section-foot" data-reveal>
             <a class="btn btn--ghost btn--lg" href="${rel('/faq.html', depth)}">All ${FAQS.length} questions ${
         ICONS.arrow
@@ -346,17 +299,7 @@ ${pageHero({
 
 <section class="section">
     <div class="wrap">
-        ${C.serviceIndex(depth)}
-    </div>
-</section>
-
-<section class="section section--tint">
-    <div class="wrap">
-        ${C.heading({
-            eyebrow: 'Most requested',
-            title: 'The six programs most clients start with'
-        })}
-        ${C.serviceCards(depth, { limit: 6 })}
+        ${C.serviceExplorer(depth)}
     </div>
 </section>
 
@@ -414,7 +357,9 @@ ${pageHero({
     mediaAlt: s.alt
 })}
 
-<section class="section">
+${serviceSignature(s)}
+
+<section class="section service-detail service-detail--${s.slug}">
     <div class="wrap">
         <div class="split">
             <div class="split__text">
@@ -563,7 +508,6 @@ ${pageHero({
 
 <section class="section section--navy">
     <span class="fx" aria-hidden="true"><i></i><i></i><i></i></span>
-    <span class="grid-fx" aria-hidden="true"></span>
     <div class="wrap">
         ${C.heading({
             eyebrow: 'Why us',
@@ -753,7 +697,7 @@ ${ctaBand(depth, {
 /* ----- Testimonials ----------------------------------------------------- */
 pages.push({
     path: '/testimonials.html',
-    title: 'Testimonials | Commercial Cleaning Systems of Chicago',
+    title: 'Client References & Cleaning Standards | CCS of Chicago',
     description:
         'Client testimonials for CCS of Chicago. We publish only genuine, attributable testimonials — and offer ' +
         'references from facilities managers running buildings like yours.',
@@ -767,7 +711,7 @@ pages.push({
     body: (depth) => `
 ${pageHero({
     eyebrow: 'Testimonials',
-    title: 'What our clients say',
+    title: 'References, not invented reviews',
     lede:
         'Only testimonials we can attribute to a real client, with their permission, get published here. If a cleaning company shows you five glowing quotes with no name and no building attached, assume it wrote them.',
     crumbs: [{ name: 'Testimonials' }],

@@ -31,9 +31,11 @@ function heading({ eyebrow, title, lede, align = 'center', light = false }) {
 
 /** Responsive image helper for the work photos. */
 function photo(name, alt, { sizes, cls = '', eager = false, w = 960, h = 640 } = {}, depth = 0) {
-    const base = rel('/assets/img/work/' + name, depth);
+    const redesigned = name.startsWith('redesign/');
+    const base = rel('/assets/img/' + (redesigned ? name : 'work/' + name), depth);
+    const small = redesigned ? base + '-600.jpg 600w' : base + '-480.jpg 480w';
     return `<img${cls ? ` class="${cls}"` : ''} src="${base}.jpg"
-             srcset="${base}-480.jpg 480w, ${base}.jpg 960w"
+             srcset="${small}, ${base}.jpg ${redesigned ? 1200 : 960}w"
              sizes="${sizes || '(max-width: 800px) 92vw, 45vw'}"
              alt="${esc(alt)}" width="${w}" height="${h}"
              ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`;
@@ -53,54 +55,30 @@ function hero(depth) {
         'Insured & background-checked'
     ];
 
-    // The rotating noun makes the headline address the reader. The first word
-    // is in the markup, so with JS off it is still a finished sentence.
-    const rotate = ['businesses', 'office towers', 'warehouses', 'plants', 'clinics', 'schools'];
-
-    const motes = [
-        [14, 62, 0, 17], [27, 38, 3.2, 21], [41, 74, 6.1, 19],
-        [58, 46, 1.8, 23], [69, 66, 4.6, 18], [80, 34, 7.4, 25],
-        [88, 58, 2.5, 20], [50, 84, 5.3, 22]
-    ]
-        .map(
-            ([x, y, delay, dur]) =>
-                `<i style="left:${x}%;top:${y}%;animation-delay:-${delay}s;animation-duration:${dur}s"></i>`
-        )
-        .join('');
-
-    const base = rel('/assets/img/hero/hero-bg', depth);
+    const base = rel('/assets/img/redesign/home-hero', depth);
 
     return `
 <section class="hero" data-hero>
     <div class="hero__bg" data-parallax>
         <img src="${base}.jpg"
-             srcset="${base}-800.jpg 800w, ${base}-1200.jpg 1200w, ${base}.jpg 1659w"
+             srcset="${base}-900.jpg 900w, ${base}.jpg 1800w"
              sizes="100vw" alt="" aria-hidden="true"
-             width="1659" height="948" fetchpriority="high" decoding="async">
+             width="1800" height="1077" fetchpriority="high" decoding="async">
     </div>
 
     <span class="hero__scrim" aria-hidden="true"></span>
-    <span class="hero__glow" aria-hidden="true"></span>
-
     <span class="hero__sweep" aria-hidden="true"></span>
-
-    <span class="motes" aria-hidden="true">${motes}</span>
 
     <div class="wrap hero__wrap">
         <div class="hero__text">
-            <p class="hero__kicker" data-in="1">${ICONS.pin} Chicago &amp; the western suburbs</p>
+            <p class="hero__kicker" data-in="1">${ICONS.pin} Serving Northern Illinois</p>
 
             <h1 class="hero__title" data-in="2">
-                <span class="hero__line">We keep Chicago's</span>
-                <span class="hero__rot" data-rotate='${JSON.stringify(rotate)}'>
-                    <span class="hero__rot-word is-in">${esc(rotate[0])}</span>
-                </span>
-                <span class="hero__line">running spotless.</span>
+                Commercial cleaning<br><em>built around your facility.</em>
             </h1>
 
-            <p class="hero__body" data-in="3">Fifteen specialist cleaning programs under one contract,
-            across Chicago and the western suburbs. Every job runs to a written scope — and a supervisor
-            inspects against it.</p>
+            <p class="hero__body" data-in="3">Commercial, industrial and institutional cleaning across Chicago.
+            One written scope, one assigned team and supervisor inspections that keep the standard consistent.</p>
 
             <ul class="hero__chips" data-in="4">
                 ${chips.map((c) => `<li>${ICONS.check}<span>${esc(c)}</span></li>`).join('\n                ')}
@@ -108,7 +86,7 @@ function hero(depth) {
 
             <div class="btn-row" data-in="5">
                 <a class="btn btn--lg btn--white btn--glow" href="${rel('/contact.html', depth)}" data-cta="hero-quote">
-                    Get a free quote ${ICONS.arrow}
+                    Request a site walk ${ICONS.arrow}
                 </a>
                 <a class="btn btn--lg btn--outline-white btn--ring" href="${BUSINESS.phoneHref}" data-cta="hero-call">
                     ${ICONS.phone} ${esc(BUSINESS.phone)}
@@ -117,6 +95,75 @@ function hero(depth) {
         </div>
     </div>
 </section>`;
+}
+
+/* Buyer-led service discovery: choose the facility first, then the specialist need. */
+function serviceExplorer(depth) {
+    const families = [
+        {
+            key: 'facilities',
+            label: 'By facility',
+            title: 'Cleaning programs shaped around the building',
+            copy: 'Start with the environment. Each program accounts for access, surfaces, operating hours and the way the space is used.',
+            slugs: ['office-building-cleaning', 'medical-office-cleaning', 'industrial-cleaning', 'manufacturing-cleaning', 'warehouse-cleaning', 'school-cleaning', 'gym-cleaning']
+        },
+        {
+            key: 'specialist',
+            label: 'Specialist care',
+            title: 'Focused work for floors, glass and handover',
+            copy: 'Add specialist work to an ongoing contract or schedule it as a standalone project.',
+            slugs: ['commercial-window-cleaning', 'carpet-cleaning', 'tile-and-grout-cleaning', 'post-construction-cleaning', 'green-cleaning']
+        },
+        {
+            key: 'recurring',
+            label: 'Recurring care',
+            title: 'One dependable cleaning routine',
+            copy: 'Build a nightly, weekly or periodic program, then review the frequencies as the building changes.',
+            slugs: ['commercial-cleaning', 'scheduled-cleaning-services', 'spring-cleaning']
+        }
+    ];
+
+    return `<div class="service-explorer" data-service-explorer>
+        <div class="service-explorer__tabs" role="tablist" aria-label="Explore cleaning services">
+            ${families.map((f, i) => `<button type="button" role="tab" id="tab-${f.key}" aria-controls="panel-${f.key}" aria-selected="${i === 0}" tabindex="${i === 0 ? '0' : '-1'}">${esc(f.label)}</button>`).join('')}
+        </div>
+        ${families.map((f, i) => {
+            const items = f.slugs.map((slug) => SERVICES.find((s) => s.slug === slug)).filter(Boolean);
+            return `<section class="service-explorer__panel" id="panel-${f.key}" role="tabpanel" aria-labelledby="tab-${f.key}"${i ? ' hidden' : ''}>
+                <div class="service-explorer__intro"><p class="eyebrow">${esc(f.label)}</p><h3>${esc(f.title)}</h3><p>${esc(f.copy)}</p></div>
+                <ul class="service-explorer__links">${items.map((s) => `<li><a href="${rel('/services/' + s.slug + '.html', depth)}"><span class="svc-list__ico">${ICONS[s.icon]}</span><span><strong>${esc(s.title)}</strong><small>${esc(s.kicker)}</small></span>${ICONS.arrow}</a></li>`).join('')}</ul>
+            </section>`;
+        }).join('')}
+    </div>`;
+}
+
+function operatingSystem(depth) {
+    return `<div class="ops-story">
+        <div class="ops-story__copy" data-reveal>
+            <p class="eyebrow">${ICONS.sparkle} A controlled cleaning system</p>
+            <h2>Defined before the first clean. Checked after every visit.</h2>
+            <p class="lede">The scope is the operating plan: each room, each task and the frequency it needs. The crew works to it, the supervisor inspects against it, and the plan changes when the building does.</p>
+            <div class="btn-row"><a class="btn btn--primary" href="${rel('/about.html', depth)}">See how we work ${ICONS.arrow}</a><a class="btn btn--ghost" href="${rel('/contact.html', depth)}">Request a site walk</a></div>
+        </div>
+        <div class="scope-sheet" data-reveal aria-label="Example structure of a commercial cleaning scope">
+            <div class="scope-sheet__head"><span>${ICONS.clipboard}</span><div><strong>Building cleaning scope</strong><small>Tasks · frequencies · inspection</small></div><b>ACTIVE</b></div>
+            <ol>
+                <li><span>01</span><div><strong>Walk the site</strong><small>Measure the real spaces and surfaces</small></div></li>
+                <li><span>02</span><div><strong>Write the scope</strong><small>Task and frequency against every area</small></div></li>
+                <li><span>03</span><div><strong>Assign the team</strong><small>Inducted to access and safety rules</small></div></li>
+                <li><span>04</span><div><strong>Clean and inspect</strong><small>Supervisor check and visit report</small></div></li>
+            </ol>
+            <div class="scope-sheet__foot"><span>${ICONS.check} Visit checked</span><span>Review cycle: monthly</span></div>
+        </div>
+    </div>`;
+}
+
+function visualProof(depth) {
+    const img = rel('/assets/img/redesign/warehouse', depth);
+    return `<div class="visual-proof">
+        <div class="visual-proof__media" data-reveal><img src="${img}.jpg" srcset="${img}-600.jpg 600w, ${img}.jpg 1200w" sizes="(max-width: 900px) 100vw, 56vw" width="1200" height="800" loading="lazy" decoding="async" alt="Professional cleaner operating a ride-on floor scrubber in a warehouse aisle"><span class="visual-proof__label">Warehouse floor care · machine scrubbing at scale</span></div>
+        <div class="visual-proof__copy" data-reveal><p class="eyebrow">Work that fits the operation</p><h2>Commercial spaces need commercial methods.</h2><p class="lede">Large floors need correctly sized machines. Clinical rooms need zone discipline. Multi-tenant buildings need quiet access and reporting by area. The program changes with the facility.</p><ul class="ticks"><li>${ICONS.check}<span>Equipment matched to the surface and scale</span></li><li>${ICONS.check}<span>Work planned around shifts, access and dispatch</span></li><li>${ICONS.check}<span>One supervisor across recurring and specialist work</span></li></ul><a class="text-link" href="${rel('/services.html', depth)}">Explore every cleaning program ${ICONS.arrow}</a></div>
+    </div>`;
 }
 
 /* --------------------------------------------------------------------------
@@ -299,7 +346,6 @@ function marquee() {
 function statBand() {
     return `
 <section class="stat-band">
-    <span class="grid-fx" aria-hidden="true"></span>
     <div class="wrap">
         <ul class="stat-grid">
             ${STATS.map(
@@ -637,6 +683,9 @@ module.exports = {
     statBand,
     serviceCards,
     serviceIndex,
+    serviceExplorer,
+    operatingSystem,
+    visualProof,
     sectors,
     reasons,
     process,

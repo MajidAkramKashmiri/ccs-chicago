@@ -103,8 +103,8 @@ const SERVICES = [
             'Work planned around shift patterns and shutdowns',
             'Crews briefed on your site induction, PPE and lockout rules'
         ],
-        image: 'industrial-cleaning',
-        alt: 'An active industrial plant with storage tanks and pipework under a clear sky'
+        image: 'redesign/industrial',
+        alt: 'Industrial cleaner operating a floor scrubber beside manufacturing equipment during a planned shutdown'
     },
     {
         slug: 'manufacturing-cleaning',
@@ -123,8 +123,8 @@ const SERVICES = [
             'Segregated equipment for sensitive production areas',
             'Waste streams handled to your site procedure'
         ],
-        image: 'manufacturing-cleaning',
-        alt: 'Molten metal and heavy plant inside a steel manufacturing facility'
+        image: 'redesign/industrial',
+        alt: 'Trained cleaner using commercial floor equipment in a large manufacturing plant'
     },
     {
         slug: 'warehouse-cleaning',
@@ -143,8 +143,8 @@ const SERVICES = [
             'Line-marking areas kept legible',
             'Scheduled around pick, pack and dispatch windows'
         ],
-        image: 'warehouse-cleaning',
-        alt: 'Stacked shipping containers at a distribution yard'
+        image: 'redesign/warehouse',
+        alt: 'Commercial cleaner operating a ride-on floor scrubber inside a warehouse aisle'
     },
     {
         slug: 'office-building-cleaning',
@@ -183,8 +183,8 @@ const SERVICES = [
             'Regulated waste handled to your practice procedure',
             'Crews briefed on patient privacy and quiet working'
         ],
-        image: 'medical-office-cleaning',
-        alt: 'A clean, brightly lit dental treatment room ready for the next patient'
+        image: 'redesign/medical',
+        alt: 'Professional cleaner wiping an exam table in a modern medical office'
     },
     {
         slug: 'school-cleaning',

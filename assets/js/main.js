@@ -33,8 +33,40 @@
             navToggle.setAttribute('aria-expanded', String(!open));
             nav.classList.toggle('is-open', !open);
             document.body.style.overflow = !open ? 'hidden' : '';
+            navToggle.setAttribute('aria-label', !open ? 'Close menu' : 'Menu');
+            if (!open) {
+                var firstNavLink = nav.querySelector('a, button');
+                if (firstNavLink) {
+                    firstNavLink.focus();
+                }
+            }
         });
     }
+
+    /* ----- service explorer tabs ---------------------------------------- */
+    Array.prototype.forEach.call(document.querySelectorAll('[data-service-explorer]'), function (explorer) {
+        var tabs = Array.prototype.slice.call(explorer.querySelectorAll('[role="tab"]'));
+        var activate = function (tab) {
+            tabs.forEach(function (item) {
+                var selected = item === tab;
+                item.setAttribute('aria-selected', String(selected));
+                item.tabIndex = selected ? 0 : -1;
+                var panel = document.getElementById(item.getAttribute('aria-controls'));
+                if (panel) panel.hidden = !selected;
+            });
+        };
+        tabs.forEach(function (tab, index) {
+            tab.addEventListener('click', function () { activate(tab); });
+            tab.addEventListener('keydown', function (event) {
+                if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft' && event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+                event.preventDefault();
+                var forward = event.key === 'ArrowRight' || event.key === 'ArrowDown';
+                var next = tabs[(index + (forward ? 1 : -1) + tabs.length) % tabs.length];
+                activate(next);
+                next.focus();
+            });
+        });
+    });
 
     /* ----- dropdown menus -------------------------------------------------
        On a hover-driven nav the menu is already open by the time a mouse click
@@ -416,6 +448,10 @@
                 return;
             }
             var slot = wrap.querySelector('[data-error]');
+            if (slot && !slot.id) {
+                slot.id = field.id + '-error';
+                field.setAttribute('aria-describedby', slot.id);
+            }
             wrap.classList.toggle('is-invalid', Boolean(message));
             if (slot) {
                 slot.textContent = message || '';
